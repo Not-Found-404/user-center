@@ -1,0 +1,231 @@
+.usercenter-layout {
+  /* 用户中心-主界面 */
+  height: 100%;
+}
+
+.usercenter-sider {
+  /* 用户中心-侧边栏 */
+  background-color: #f4f4f4;
+  border-right-color: rgb(51, 51, 51);
+  border-right-style: none;
+  border-right-width: 0;
+}
+
+.usercenter-sider__userinfo {
+  /* 用户中心-侧边栏__用户信息 */
+  width: 100%;
+  height: 10em;
+  padding: 1em;
+}
+
+.usercenter-sider__userinfo:hover {
+  background-color: #eaeaea;
+  cursor: pointer;
+}
+
+.sider__menu-link{
+  color:rgba(0, 0, 0, 0.65);
+}
+
+.sider__menu-link:hover{
+  color:#1890ff;
+}
+
+.userinfo-avatar {
+  width: 4.5em;
+  height: 4.5em;
+  margin: 0 auto 0 auto;
+  border-radius: 2.25em;
+  background-color: #ffff;
+}
+
+.userinfo-avatar__img {
+  width: 4.5em;
+  height: 4.5em;
+  border-radius: 2.25em;
+}
+
+.userinfo-content {
+  /* 用户中心-侧边栏__用户信息-内容 */
+  width: 100%;
+}
+
+.userinfo-name-container {
+  width: 100%;
+  height: 3.5em;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.userinfo-name {
+  font-size: 1.5em;
+  max-width: 100%;
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  white-space: nowrap !important;
+  word-wrap: normal !important;
+}
+
+.usercenter-container {
+  /* 用户中心-界面容器 */
+  background-color: #ffff;
+}
+
+.usercenter-content {
+  display: flex;
+  flex-direction: column !important;
+  overflow: hidden !important;
+}
+
+.usercenter-controlPanel {
+  /* 控制面板 */
+  width: 100%;
+}
+
+.controlPanel__button-group {
+  /* 控制面板-按钮组 */
+  display: flex;
+  flex-direction: row;
+  height: 3em;
+  width: 100%;
+  background-color: #f8f8f8;
+  border-bottom: 1px solid #eaeaea;
+  border-left: 1px solid #eaeaea;
+}
+
+.controlPanel-button {
+  /* 控制面板-按钮 */
+  width: 100%;
+  max-width: 10em;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
+.usercenter-sider__trigger-button {
+    /* 用户中心-侧边栏__切换触发 */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 5em;
+    height: 100%;
+    color:rgb(26, 67, 130);
+    border-right: 1px solid #eaeaea;
+}
+
+.controlPanel-button:hover {
+  background-color: #eaeaea;
+}
+
+.controlPanel-navigate {
+  /* 控制面板-导航栏 */
+  height: 2.5em;
+  width: 100%;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #eaeaea;
+  border-left: 1px solid #eaeaea;
+}
+
+.usercenter-workspace {
+  /* 用户中心-工作区 */
+  height: 100%;
+  width: 100%;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+
+.workspace-display {
+  /* 用户中心 */
+  width: 100%;
+  height: 100%;
+}
+
+.usercenter-card {
+  margin-top: 0.5em;
+}
+
+.usercenter-header {
+  /* 用户中心-头部 */
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-left: 2em;
+  padding-right: 2em;
+  background-color: #0078D7;
+}
+
+.usercenter-header__brand {
+  /* 用户中心-头部__标志 */
+  height: 100%;
+  display: flex;
+}
+
+.header__brand-icon {
+  /* 用户中心-头部__图标 */
+  color: #ffff;
+}
+
+.header__brand-title__container {
+  margin-left: 0.5em;
+  display: flex;
+}
+
+.header__brand-title__font {
+  font-size: 1.5em;
+  color: #ffff;
+}
+
+.usercenter-header__search {
+  /* 用户中心-头部__搜索 */
+  height: 100%;
+  width: 15em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  display: flex;
+}
+
+.header__search-input {
+  /* 用户中心-头部__搜索-输入框 */
+  height: 100%;
+  width: 100%;
+}
+
+/* 媒体响应 */
+/*  breakpoint width:
+ *  xs: <'576px'  ,
+ *  sm:  '576px'  ,
+ *  md:  '768px'  ,
+ *  lg:  '992px'  ,
+ *  xl:  '1200px' ,
+ *  xxl: '1600px'
+ */
+
+@media screen and (max-width: 576px){
+
+  .controlPanel-button__font{
+    /* 控制面板-按钮__文字 */
+    display: none;
+  }
+
+  .usercenter-header{
+    /* 用户中心-头部 */
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .usercenter-header__search{
+    /* 用户中心-头部__搜索栏 */
+    width: 9em;
+    height: 4em;
+  }
+
+  .header__brand-title__font{
+    /* 用户中心-头部-标题__字体 */
+    font-size:1.2em;
+  }
+
+}
