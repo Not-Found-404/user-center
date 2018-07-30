@@ -132,7 +132,7 @@ export class UserCenterComponent implements OnInit {
   }
 
   // 添加新的文件夹
-  addNewFolder() {
+  addNewFolder(): void {
     this.folderService.save({
       parent: this.folder.folderId,
       folderName: '新建文件夹',

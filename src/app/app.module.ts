@@ -9,12 +9,18 @@ import {NgZorroAntdModule, NZ_I18N, NZ_MESSAGE_CONFIG, zh_CN} from 'ng-zorro-ant
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { FileTreeComponent } from './file-tree/file-tree.component';
+import { InputModalComponent } from './input-modal/input-modal.component';
+import { MoveFileModalComponent } from './move-file-modal/move-file-modal.component';
 
 registerLocaleData(zh);
 
 @NgModule({
   declarations: [
-    UserCenterComponent
+    UserCenterComponent,
+    FileTreeComponent,
+    InputModalComponent,
+    MoveFileModalComponent
   ],
   imports: [
     BrowserModule,
