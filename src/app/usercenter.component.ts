@@ -1,4 +1,4 @@
-import {Component, OnInit, TemplateRef} from '@angular/core';
+import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
 import {NzMenuItemDirective, NzDropdownContextComponent, NzDropdownService, NzModalService} from '../../node_modules/ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
 import {User} from './services/user';
@@ -6,11 +6,14 @@ import {Folder} from './services/folder';
 import {UserService} from './services/user.service';
 import {SlideService} from './services/slide.service';
 import {FolderService} from './services/folder.service';
+import {MoveFileModalComponent} from './move-file-modal/move-file-modal.component'; /*移动文件的component*/
+import {InputModalComponent} from './input-modal/input-modal.component';
+import {Slide} from './services/slide';
+import {Result} from './services/result';
 import {log} from 'util';
 
 /** Test Environment 测试环境__数据传输 **/
 import {DATA} from './mockData';
-
 /** Test Environment end 测试环境__数据传输-结束 **/
 
 @Component({
@@ -32,25 +35,31 @@ export class UserCenterComponent implements OnInit {
   // 当前打开的文件夹
   folder: Folder;
 
+  /*属性装饰器，声明对子组件元素的实例引用*/
+  @ViewChild('appMoveFileModal')
+  appMoveFileModal: MoveFileModalComponent;
+
+  @ViewChild('appInputModal')
+  appInputModal: InputModalComponent;
+
+  ngOnInit() {
+    this.getLoginUser();
+  }
   constructor(private nzDropdownService: NzDropdownService,
               private userService: UserService,
               private slideService: SlideService,
               private folderService: FolderService,
               private messageService: NzMessageService,   // 全局消息服务-ant
               private modalService: NzModalService        // 对话框服务-ant
-              ) {
+  ) {
     this.user = {
-      username: '用户',
-      avator: '../assets/img/avatar/avator_1.png'
+      username: '新用户',
+      /* 用户初始头像 */
+      /* 生产环境 */
+      avator: 'http://www.qtu404.com/angular/assert/image/avatar/default_avatar.png'
+      /* 本地环境 */
+      // avator: '../assets/img/avatar/default_avatar.png'
     };
-    this.folder = {
-      folderName: '',
-      folderId: null,
-      parent: null,
-      child: [],
-      slideVos: []
-    };
-
     /** Test Environment 测试环境__数据传输 **/
     this.folder = DATA;
     /** Test Environment end 测试环境__数据传输-结束 **/
@@ -78,11 +87,16 @@ export class UserCenterComponent implements OnInit {
 
   deleteFolder(folderId: number): void {
     /* 删除文件夹函数 */
-    /* 删除文件夹业务逻辑 */
+    /* 提示信息_删除文件id */
     log('删除文件夹ID:' + folderId.toString());
-
-    /* 提示信息_删除成功 */
-    this.showMessage('success', '文件夹删除成功');
+    /* 删除文件夹业务逻辑 */
+    this.folderService.deleteFolder(folderId).subscribe((data: Result) => {
+      if (data.code === 200) {
+        this.getFolder(this.folder.folderId);
+        /* 提示信息_删除成功 */
+        this.showMessage('success', '文件夹删除成功');
+      }
+    });
   }
 
   /* 幻灯片右键菜单 */
@@ -90,7 +104,7 @@ export class UserCenterComponent implements OnInit {
   // 右键菜单_播放幻灯片
   slideMenuPlay(slideId: number): void {
     /* 播放幻灯片逻辑 */
-
+    window.open('toPlayPage?slideId=' + slideId);
     log('播放幻灯片ID:' + slideId.toString());
   }
 
@@ -99,21 +113,24 @@ export class UserCenterComponent implements OnInit {
     /* 显示删除确认对话框 */
     this.showDeleteSlideConfirm(slideId);
   }
-
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
     log('删除幻灯片ID:' + slideId.toString());
     /* 删除幻灯片业务逻辑 */
-
-    /* 提示信息_删除成功 */
-    this.showMessage('success', '幻灯片删除成功');
+    this.slideService.delelteSlideInfo(slideId).subscribe((data: Result) => { // 异步请求
+      if (data.code === 200) {
+        this.getFolder(this.folder.folderId);
+        /* 提示信息_删除成功 */
+        this.showMessage('success', '幻灯片删除成功');
+      }
+    });
   }
 
   /* **** 右键菜单-end **** */
 
   // 得当前用户的信息
-  getLoginUser() {
+  getLoginUser(): void {
     this.userService.getLoginUser().subscribe((data: User) => {
       if (data != null) {
         this.user = data;
@@ -123,7 +140,7 @@ export class UserCenterComponent implements OnInit {
   }
 
   // 根据id值打开文件夹
-  getFolder(folderId: number) {
+  getFolder(folderId: number): void {
     if (folderId != null) {
       this.folderService.getFolder(folderId).subscribe((data: Folder) => {
         this.folder = data;
@@ -133,6 +150,7 @@ export class UserCenterComponent implements OnInit {
 
   // 添加新的文件夹
   addNewFolder(): void {
+    log('开始新建文件夹');
     this.folderService.save({
       parent: this.folder.folderId,
       folderName: '新建文件夹',
@@ -147,7 +165,8 @@ export class UserCenterComponent implements OnInit {
   }
 
   // 添加新的幻灯片
-  addNewSlide() {
+  addNewSlide(): void {
+    log('创建新的幻灯片');
     this.slideService.addNewSlide(this.folder.folderId).subscribe(_ => {
       this.getFolder(this.folder.folderId);
       // 显示创建成功信息
@@ -155,8 +174,51 @@ export class UserCenterComponent implements OnInit {
     });
   }
 
-  ngOnInit() {
-    this.getLoginUser();
+  playWithSync(slideId: number): void {
+    // 演讲点击事件
+    window.open('toPlayPage?slideId=' + slideId + '&control=true');
+  }
+  modifyAvatar(): void {
+    /* 点击修改头像 */
+    window.open('toAvatorEditpage');
+  }
+  // 幻灯片移动
+  slideMove(slide: Slide) {
+    this.appMoveFileModal.showModal(slide, 2);
+  }
+
+  folderMove(folder: Folder): void {
+    /*在log中输出，文件夹移动*/
+    log('移动文件:' + folder.folderId.toString());
+    // 文件夾移动
+    this.appMoveFileModal.showModal(folder, 1);
+  }
+  // 编辑文件夹名称
+  eidtFolderName(folder: Folder): void {
+    this.appInputModal.showModal(folder, 1);
+  }
+
+  // 编辑幻灯片名称
+  eidtSlideName(slide: Slide): void  {
+    this.appInputModal.showModal(slide, 2);
+  }
+
+  // 按照名称搜索
+  searchFile(event: any): void  {
+    if (event.keyCode === 13) {
+      if (event.target.value === '') {
+        return;
+      } else {
+        this.slideService.findByName({
+          name: event.target.value,
+          slideId: null,
+          folderId: null
+        }).subscribe((data: Slide[]) => {
+          this.folder.slideVos = data;
+          this.folder.child = [];
+        });
+      }
+    }
   }
 
   triggerToggle(): void {
@@ -193,6 +255,16 @@ export class UserCenterComponent implements OnInit {
      * content:信息内容 string
      */
     this.messageService.create(type, content);
+  }
+
+  userLogOut(): void {
+    /* 注销用户函数 */
+    window.open('toHomePage', '_self'); // 在当前窗口跳转
+  }
+
+  importSlide() {
+    /* 导入幻灯片跳转函数 */
+    window.open('toUploadPage'); // 在当前窗口跳转
   }
 
   showDeleteSlideConfirm(slideId: number): void {

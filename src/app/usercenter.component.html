@@ -1,5 +1,9 @@
 <!-- 用户中心-主界面 -->
 <script src="usercenter.component.ts"></script>
+<!--文件树弹出-->
+<app-move-file-modal #appMoveFileModal></app-move-file-modal>
+<!--输入框弹出框-->
+<app-input-modal #appInputModal></app-input-modal>
 <nz-layout class="usercenter-layout">
 
   <!-- 用户中心-头部 -->
@@ -16,7 +20,7 @@
 
     <!-- 用户中心—头部__搜索栏 -->
     <nz-input-group class="usercenter-header__search" nzSuffixIcon="anticon anticon-search">
-      <input class="header__search-input" type="text" nz-input placeholder="搜索">
+      <input (keyup)="searchFile($event)" class="header__search-input" type="text" nz-input placeholder="搜索">
     </nz-input-group>
   </nz-header>
 
@@ -29,7 +33,7 @@
               [nzBreakpoint]="'md'"
               [nzTrigger]='null'>
       <!-- 用户中心-侧边栏__用户信息 -->
-      <div class="usercenter-sider__userinfo">
+      <div class="usercenter-sider__userinfo" (click)="modifyAvatar()">
         <!-- 侧边栏__用户信息-头像 -->
         <div class="userinfo-avatar">
           <img class="userinfo-avatar__img" src={{user.avator}} alt="User"/>
@@ -63,14 +67,12 @@
         </li>
 
         <!-- 菜单项 -->
-        <li nz-menu-item>
+        <li nz-menu-item (click)="userLogOut()">
           <!-- 注销用户 -->
           <span>
-              <a class="sider__menu-link" href="toHomePage" >
-                <i class="anticon anticon-logout"></i>
-                <span class="nav-text">注销</span>
-              </a>
-            </span>
+              <i class="anticon anticon-logout"></i>
+              <span class="nav-text">注销</span>
+          </span>
         </li>
 
       </ul>
@@ -88,13 +90,13 @@
                   nzType="default" nz-tooltip nzTitle="切换侧边栏">
             <i class="anticon anticon-bars"></i>
           </button>
-          <button (click)="getFolder(folder.parent)" class="controlPanel-button" nz-button nzType="default"
-                  nz-tooltip nzTitle="上一级文件夹">
+          <button class="controlPanel-button" nz-button nzType="default"
+                  nz-tooltip nzTitle="上一级文件夹" (click)="getFolder(folder.parent)">
             <i class="anticon anticon-rollback"></i>上一级
           </button>
-          <button (click)="getFolder(user.folderId)" class="controlPanel-button" nz-button nzType="default"
-                  nz-tooltip nzTitle="主目录">
-            <i class="anticon anticon-folder" (click)="getFolder(user.folderId)"></i>主目录
+          <button class="controlPanel-button" nz-button nzType="default"
+                  nz-tooltip nzTitle="主目录" (click)="getFolder(user.folderId)">
+            <i class="anticon anticon-folder"></i>主目录
           </button>
         </div>
       </div>
@@ -113,11 +115,11 @@
           <span class="controlPanel-button__font">新建文件夹</span>
         </button>
 
-        <a href="toUploadPage" class="controlPanel-button" nz-button nzType="default"
-           nz-tooltip nzTitle="导入幻灯片">
+        <button (click)="importSlide()" class="controlPanel-button" nz-button nzType="default"
+                nz-tooltip nzTitle="导入幻灯片">
           <i class="anticon anticon-upload"></i>
           <span class="controlPanel-button__font">导入幻灯片</span>
-        </a>
+        </button>
       </div>
 
       <!-- 用户中心-工作区 -->
@@ -134,7 +136,12 @@
             </nz-card>
             <!-- 幻灯片封面 -->
             <ng-template #coverFolder>
-              <img alt="Folder" src="../assets/img/icon/folder_icon.png"/>
+              <!-- 生产环境 -->
+              <img (click)="getFolder(child.folderId)" alt="Folder"
+                   src="http://www.qtu404.com/angular/assert/image/icon/folder_icon.png"/>
+              <!-- 本地环境 -->
+              <!--<img (click)="getFolder(child.folderId)" alt="Folder"-->
+              <!--src="../assets/img/icon/folder_icon.png"/>-->
             </ng-template>
             <!-- 动作-打开 -->
             <ng-template #actionOpen>
@@ -144,13 +151,13 @@
             </ng-template>
             <!-- 动作-重命名 -->
             <ng-template #actionRename>
-              <div nz-tooltip nzTitle="重命名">
+              <div nz-tooltip nzTitle="重命名" (click)="eidtFolderName(child)">
                 <i class="anticon anticon-edit"></i>
               </div>
             </ng-template>
             <!-- 动作-移动文件 -->
             <ng-template #actionMove>
-              <div nz-tooltip nzTitle="移动到">
+              <div nz-tooltip nzTitle="移动到" (click)="folderMove(child)">
                 <i class="anticon anticon-arrow-right"></i>
               </div>
             </ng-template>
@@ -170,11 +177,16 @@
             </nz-card>
             <!-- 幻灯片封面 -->
             <ng-template #coverSlide>
-              <img alt="Slide" src="../assets/img/icon/ppt_icon.png"/>
+              <!-- 生产环境 -->
+              <img (click)="playWithSync(child.slideId)" alt="Slide" alt="Slide"
+                   src="http://www.qtu404.com/angular/assert/image/icon/ppt_icon.png"/>
+              <!-- 本地环境 -->
+              <!--<img (click)="playWithSync(child.slideId)" alt="Slide" alt="Slide"-->
+                   <!--src="../assets/img/icon/ppt_icon.png"/>-->
             </ng-template>
             <!-- 动作-演讲 -->
             <ng-template #actionSpeech>
-              <div nz-tooltip nzTitle="演讲">
+              <div nz-tooltip nzTitle="演讲" (click)="playWithSync(child.slideId)">
                 <i class="anticon anticon-video-camera"></i>
               </div>
             </ng-template>
@@ -184,15 +196,15 @@
                 <i class="anticon anticon-file-ppt"></i>
               </div>
             </ng-template>
-            <!-- 动作-重名名 -->
+            <!-- 动作-重命名 -->
             <ng-template #actionRename>
-              <div nz-tooltip nzTitle="重命名">
+              <div nz-tooltip nzTitle="重命名" (click)="eidtSlideName(child)">
                 <i class="anticon anticon-edit"></i>
               </div>
             </ng-template>
             <!-- 动作-移动到 -->
             <ng-template #actionMove>
-              <div nz-tooltip nzTitle="移动到">
+              <div nz-tooltip nzTitle="移动到" (click)="slideMove(child)">
                 <i class="anticon anticon-arrow-right"></i>
               </div>
             </ng-template>

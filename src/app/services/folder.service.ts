@@ -49,7 +49,7 @@ export class FolderService {
    * @returns {Observable<Result>}
    */
   deleteFolder(id: number): Observable<Result> {
-    return this.http.get<Result>(this.folderUrl + `delete?id=` + id, httpOptions);
+    return this.http.get<Result>(this.folderUrl + `delete?folderId=` + id, httpOptions);
   }
 
   /**

@@ -23,14 +23,6 @@
   cursor: pointer;
 }
 
-.sider__menu-link{
-  color:rgba(0, 0, 0, 0.65);
-}
-
-.sider__menu-link:hover{
-  color:#1890ff;
-}
-
 .userinfo-avatar {
   width: 4.5em;
   height: 4.5em;
