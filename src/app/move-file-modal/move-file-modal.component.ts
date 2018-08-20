@@ -2,11 +2,11 @@ import {Component, forwardRef, Host, Inject, OnInit, ViewChild} from '@angular/c
 import {FileTreeComponent} from '../file-tree/file-tree.component';
 import {Folder} from '../services/folder';
 import {Slide} from '../services/slide';
-import {UserCenterComponent} from '../usercenter.component';
 import {NzMessageService, NzTreeNode, NzTreeNodeOptions} from 'ng-zorro-antd';
 import {SlideService} from '../services/slide.service';
 import {FolderService} from '../services/folder.service';
 import {TreeNode} from '../services/TreeNode';
+import {UsercenterComponent} from '../usercenter/usercenter.component';
 
 @Component({
   selector: 'app-move-file-modal',
@@ -24,7 +24,7 @@ export class MoveFileModalComponent implements OnInit {
   // 1是slide 2是folder
   type: number;
   folderId: number;
-  parent: UserCenterComponent;
+  parent:  UsercenterComponent;
   nodes = [
     new NzTreeNode({
       title: '安卓',
@@ -65,7 +65,7 @@ export class MoveFileModalComponent implements OnInit {
     private slideService: SlideService,
     private folderService: FolderService,
     private messageService: NzMessageService,
-    @Host() @Inject(forwardRef(() => UserCenterComponent)) userCenterComponent: UserCenterComponent
+    @Host() @Inject(forwardRef(() => UsercenterComponent)) userCenterComponent: UsercenterComponent
   ) {
     this.parent = userCenterComponent;
   }

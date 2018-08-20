@@ -1,0 +1,86 @@
+<!-- 用户中心-主界面 -->
+<script src="nf4-app.component.ts"></script>
+
+<nz-layout class="usercenter-layout">
+
+  <!-- 用户中心-头部 -->
+  <nz-header class="usercenter-header">
+    <!-- 用户中心-头部__标志 -->
+    <div class="usercenter-header__brand">
+      <div class="header__brand-icon">
+        <fa name="paper-plane" size="lg"></fa>
+      </div>
+      <div class="header__brand-title__container">
+        <span class="header__brand-title__font">NF4 园丁助手</span>
+      </div>
+    </div>
+
+    <!-- 用户中心—头部__搜索栏 -->
+    <nz-input-group class="usercenter-header__search" nzSuffixIcon="anticon anticon-search">
+      <input (keyup)="searchFile($event)" class="header__search-input" type="text" nz-input placeholder="搜索">
+    </nz-input-group>
+  </nz-header>
+
+  <!-- 用户中心-界面容器 -->
+  <nz-layout class="usercenter-container">
+
+    <!-- 用户中心-侧边栏 -->
+
+    <nz-sider class="usercenter-sider" nzCollapsible [(nzCollapsed)]="isCollapsed" [nzCollapsedWidth]="0"
+              [nzBreakpoint]="'md'"
+              [nzTrigger]='null'>
+      <!-- 用户中心-侧边栏__用户信息 -->
+      <div class="usercenter-sider__userinfo" (click)="modifyAvatar()">
+        <!-- 侧边栏__用户信息-头像 -->
+        <div class="userinfo-avatar">
+          <img class="userinfo-avatar__img" src={{user.avator}} alt="User"/>
+        </div>
+        <div class="userinfo-content">
+          <div class="userinfo-name-container">
+            <span class="userinfo-name">{{user.username}}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- 用户中心侧边栏__菜单 -->
+      <ul class="usercenter-sider__menu" nz-menu [nzMode]="isCollapsed?'vertical':'inline'">
+
+        <!-- 菜单项 -->
+        <li nz-menu-item>
+          <a routerLink="/usercenter" routerLinkActive="active">
+          <!-- 文件 -->
+          <span>
+            <i class="anticon anticon-home"></i>
+            <span class="nav-text">个人中心</span>
+          </span>
+            </a>
+        </li>
+
+        <!-- 菜单项 -->
+        <li nz-menu-item>
+          <a routerLink="/question-test" routerLinkActive="active">
+          <!-- 试题检测 -->
+          <span>
+            <i class="anticon anticon-profile"></i>
+            <span class="nav-text">试题检测</span>
+          </span>
+          </a>
+        </li>
+
+        <!-- 菜单项 -->
+        <li nz-menu-item (click)="userLogOut()">
+          <!-- 注销用户 -->
+          <span>
+              <i class="anticon anticon-logout"></i>
+              <span class="nav-text">注销</span>
+          </span>
+        </li>
+
+      </ul>
+
+    </nz-sider>
+      <router-outlet></router-outlet>
+
+  </nz-layout>
+
+</nz-layout>

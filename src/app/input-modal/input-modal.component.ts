@@ -1,10 +1,10 @@
 import {Component, forwardRef, Host, Inject, OnInit} from '@angular/core';
 import {Folder} from '../services/folder';
 import {Slide} from '../services/slide';
-import {UserCenterComponent} from '../usercenter.component';
 import {NzMessageService} from 'ng-zorro-antd';
 import {FolderService} from '../services/folder.service';
 import {SlideService} from '../services/slide.service';
+import {UsercenterComponent} from '../usercenter/usercenter.component';
 
 @Component({
   selector: 'app-input-modal',
@@ -23,13 +23,13 @@ export class InputModalComponent implements OnInit {
   // 1是slide 2是folder
   type: number;
   // 得到父组件，调用更新
-  parentComponent: UserCenterComponent;
+  parentComponent: UsercenterComponent;
 
   constructor(
     private slideService: SlideService,
     private folderService: FolderService,
     private messageService: NzMessageService,
-    @Host() @Inject(forwardRef(() => UserCenterComponent)) userCenterComponent: UserCenterComponent
+    @Host() @Inject(forwardRef(() => UsercenterComponent)) userCenterComponent: UsercenterComponent
   ) {
     this.parentComponent = userCenterComponent;
   }
