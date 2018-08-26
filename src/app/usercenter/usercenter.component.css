@@ -29,6 +29,9 @@
 .controlPanel-button:hover {
   background-color: #eaeaea;
 }
+.usercenter-card {
+  margin-top: 0.5em;
+}
 /* 媒体响应 */
 /*  breakpoint width:
  *  xs: <'576px'  ,
