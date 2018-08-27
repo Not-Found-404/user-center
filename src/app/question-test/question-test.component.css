@@ -63,6 +63,10 @@
   /*试题分成一个一个区域显示*/
   margin-top: 0.5em;
 }
+.question-option-content {
+ margin: 1em;
+  padding-left: 1.5em;
+}
 /* 媒体响应 */
 /*  breakpoint width:
  *  xs: <'576px'  ,

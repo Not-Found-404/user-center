@@ -41,8 +41,8 @@
         </nz-card>
         <!-- 试题的内容 -->
         <ng-template #coverQuestion>
-          <div *ngFor="let option of question.optionList" (click)="editQuestion(question)">
-            {{option.content}}
+          <div *ngFor="let option of question.optionList" (click)="editQuestion(question)" class="question-option-content">
+            <i class="anticon anticon-form"></i> {{option.content}}
           </div>
         </ng-template>
         <!-- 动作-发布 -->

@@ -76,7 +76,7 @@ export class QuestionTestComponent implements OnInit {
      */
   getAllQuestions(userId: number): void {
     if (userId != null) {
-      log('获取用户的所有试题');
+      log('获取用户的所有试题' + userId);
       this.questionService.findAllQuestions().subscribe((questionList: Question[]) => {
         this.questionList = questionList;
       });

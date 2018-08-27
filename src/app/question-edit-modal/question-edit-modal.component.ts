@@ -115,8 +115,8 @@ export class QuestionEditModalComponent implements OnInit {
   handleCancel(): void {
     /* 点击取消响应函数 */
     log('编辑试题__取消');
-
-    this.parentComponent.getAllQuestions(this.userId);
+    /*前端测试运行时,注释掉下面这行代码*/
+   // this.parentComponent.getAllQuestions(this.parentComponent.user.userId);
     this.isVisible = false;
   }
 }
