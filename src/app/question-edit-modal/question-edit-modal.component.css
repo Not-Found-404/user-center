@@ -1,0 +1,4 @@
+.option-content{
+  white-space: nowrap;  /*强制span不换行*/
+  display: inline-block;  /*将span当做块级元素对待*/
+}

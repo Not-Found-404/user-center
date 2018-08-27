@@ -1,0 +1,10 @@
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()" >
+  <div class="two-dimension-code">
+<ngx-qrcode [qrc-element-type]="elementType" [qrc-value] = "value">
+</ngx-qrcode>
+  </div>
+  <div>
+    扫描上面的二维码，或者复制以下链接，进行答题！
+    {{value}}
+  </div>
+</nz-modal>

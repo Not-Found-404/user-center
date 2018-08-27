@@ -1,0 +1,16 @@
+<!--生成二维码弹出框-->
+<app-generate-qrcode-modal #appGenerateQRCodeModal></app-generate-qrcode-modal>
+<nz-modal [nzTitle]="modalTitle" [nzContent]="modalContent" [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <ng-template #modalTitle>
+    设置发布时间
+  </ng-template>
+  <ng-template #modalContent>
+  <div class="content">
+    <nz-input-number [(ngModel)]="minute" [nzSize]="'large'" [nzMin]="0" [nzMax]="60" [nzStep]="1"></nz-input-number>
+    <span class="font-margin">分</span>
+    <span class="font-margin">:</span>
+    <nz-input-number [(ngModel)]="second" [nzSize]="'large'" [nzMin]="0" [nzMax]="60" [nzStep]="1"></nz-input-number>
+    <span class="font-margin">秒</span>
+  </div>
+  </ng-template>
+</nz-modal>

@@ -1,0 +1,23 @@
+<app-add-option-modal #appAddOptionModalModal></app-add-option-modal>
+<nz-modal [(nzVisible)]="isVisible" (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+
+  题目：<input nz-input placeholder="请输入题目" [(ngModel)]="description">
+  <div></div>
+  <div *ngFor="let optionList of optionList">
+
+    <nz-radio-group  [(ngModel)]="originalAnswer">
+       <span class="option-content">
+      <label nz-radio nzValue={{optionList.optionId}}></label>
+      <input nz-input placeholder="请输入选项" [(ngModel)]="optionList.content">
+      <a (click)="deleteOption(optionList.optionId)">删除</a>
+   </span>
+    </nz-radio-group>
+
+  </div>
+  <div >
+    <a (click)="addNewOption(question.questionId)">添加新的选项</a>
+  </div>
+  <div>
+    点击上方的radio按钮，选择您的正确答案
+  </div>
+</nz-modal>

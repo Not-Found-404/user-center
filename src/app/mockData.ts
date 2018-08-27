@@ -1,6 +1,122 @@
 /* 构造模拟数据 */
 import {Folder} from './services/folder';
-
+import {Question, QuestionList} from './services/question';
+import {Option} from './services/option';
+import {Publish} from './services/publish';
+export const QUESTION: Question[] = [
+  {
+    userId: 1,
+    questionId: 1,
+    originalAnswer: 1, // 正确答案
+    description: '这是问题1',
+    optionList: [
+      {
+        optionId: 111,
+        content: '选项1'
+      },
+      {
+        optionId: 222,
+        content: '选项2'
+      }
+    ],
+    publishList: [
+      {
+        publishId: 1,
+        questionId: 1,
+        time: new Date(),
+      },
+      {
+        publishId: 2,
+        questionId: 1,
+        time: new Date('2017-01-08'),
+      }
+    ]
+  },
+  {
+    userId: 1,
+    questionId: 1,
+    originalAnswer: 1, // 正确答案
+    description: '这是问题1',
+    optionList: [
+      {
+        optionId: 111,
+        content: '选项1'
+      },
+      {
+        optionId: 222,
+        content: '选项2'
+      }
+    ],
+    publishList: [
+      {
+        publishId: 1,
+        questionId: 1,
+        time: new Date(),
+      },
+      {
+        publishId: 2,
+        questionId: 1,
+        time: new Date('2017-01-08'),
+      }
+    ]
+  },
+  {
+    userId: 1,
+    questionId: 1,
+    originalAnswer: 1, // 正确答案
+    description: '这是问题1',
+    optionList: [
+      {
+        optionId: 111,
+        content: '选项1'
+      },
+      {
+        optionId: 222,
+        content: '选项2'
+      }
+    ],
+    publishList: [
+      {
+        publishId: 1,
+        questionId: 1,
+        time: new Date(),
+      },
+      {
+        publishId: 2,
+        questionId: 1,
+        time: new Date('2017-01-08'),
+      }
+    ]
+  },
+  {
+    userId: 1,
+    questionId: 1,
+    originalAnswer: 1, // 正确答案
+    description: '这是问题1',
+    optionList: [
+      {
+        optionId: 111,
+        content: '选项1'
+      },
+      {
+        optionId: 222,
+        content: '选项2'
+      }
+    ],
+    publishList: [
+      {
+        publishId: 1,
+        questionId: 1,
+        time: new Date(),
+      },
+      {
+        publishId: 2,
+        questionId: 1,
+        time: new Date('2017-01-08'),
+      }
+    ]
+  }
+];
 export const DATA: Folder = {
   folderName: '根文件夹',
   folderId: 0,

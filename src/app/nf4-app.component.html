@@ -48,19 +48,19 @@
         <!-- 菜单项 -->
         <li nz-menu-item>
           <a routerLink="/usercenter" routerLinkActive="active">
-          <!-- 文件 -->
-          <span>
+            <!-- 文件 -->
+            <span>
             <i class="anticon anticon-home"></i>
             <span class="nav-text">个人中心</span>
           </span>
-            </a>
+          </a>
         </li>
 
         <!-- 菜单项 -->
         <li nz-menu-item>
           <a routerLink="/question-test" routerLinkActive="active">
-          <!-- 试题检测 -->
-          <span>
+            <!-- 试题检测 -->
+            <span>
             <i class="anticon anticon-profile"></i>
             <span class="nav-text">试题检测</span>
           </span>
@@ -79,7 +79,9 @@
       </ul>
 
     </nz-sider>
+    <nz-content class="usercenter-content">
       <router-outlet></router-outlet>
+    </nz-content>
 
   </nz-layout>
 

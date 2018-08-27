@@ -1,0 +1,45 @@
+<nz-modal [(nzVisible)]="isVisible" nzTitle={{title}} (nzOnCancel)="handleCancel()" (nzOnOk)="handleOk()">
+  <!--显示试题发布情况-->
+<div *ngIf="isShowPublish">
+  <div >
+    <nz-table>
+      <thead>
+      <tr>
+        <th> 发布ID</th>
+        <th>发布时间</th>
+        <th>查看具体回答情况</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let publish of publishList">
+        <td> {{publish.publishId}}</td>
+        <td>{{publish.time}}</td>
+        <td><a (click)="statistcsAnswer(publish)">查看此次发布</a></td>
+      </tbody>
+    </nz-table>
+</div>
+</div>
+  <!--显示试题回答情况-->
+  <div  *ngIf="isShowAnswer">
+    <!--饼状图-->
+    <div echarts [options]="chartOption" [style]="{'width': '100%', 'height': '5em', 'display': 'inline-block'}">
+    </div>
+    答对人数：{{numOfRightRespondent}},
+    答错人数：{{numOfWrongRespondent}}
+    <nz-table class="table table-striped" [nzScroll]="{ y: '240px' }">
+      <thead>
+      <tr>
+        <th nzWidth="150px">答题者姓名</th>
+        <th nzWidth="150px">所选答案</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let answer of answerList">
+        <td> {{answer.respondentInfo}}</td>
+        <td>{{answer.answerId}}</td>
+      </tbody>
+    </nz-table>
+
+  </div>
+</nz-modal>
+

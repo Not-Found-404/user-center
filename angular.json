@@ -77,7 +77,8 @@
               "node_modules/ng-zorro-antd/src/ng-zorro-antd.min.css",
               "src/styles.css"
             ],
-            "scripts": [],
+            "scripts": [
+              "../node_modules/echarts/dist/echarts.min.js"],
             "assets": [
               "src/favicon.ico",
               "src/assets"

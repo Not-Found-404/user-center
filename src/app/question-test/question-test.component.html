@@ -1,3 +1,84 @@
-<p>
-  question-test works!
-</p>
+<!--发布试题-->
+<app-set-publish-time #appSetPublishTimeModal></app-set-publish-time>
+<!--编辑试题弹出框-->
+<app-question-edit-modal #appQuestionEditModal></app-question-edit-modal>
+<!--统计答题情况弹出框-->
+<app-statistcs-answer-modal #appStatistcsAnswerModal></app-statistcs-answer-modal>
+<!--显示正确答案弹出框-->
+<app-show-answer-modal #appShowOriginalAnswerModal></app-show-answer-modal>
+<!-- 试题检验-内容 -->
+<nz-content class="question-content">
+  <!-- 控制面板 -->
+  <div class="question-controlPanel">
+
+    <!-- 控制面板-导航栏 -->
+    <div class="controlPanel-navigate">
+      <button class="controlPanel-button question-sider__trigger-button"  nz-button
+              nzType="default" nz-tooltip nzTitle="切换侧边栏" (click)="triggerToggle()">
+        <i class="anticon anticon-bars"></i>
+      </button>
+    </div>
+  </div>
+
+  <!-- 控制面板-按钮组 -->
+  <div class="controlPanel__button-group">
+    <button (click)="addNewQuestion()" class="controlPanel-button" nz-button nzType="default"
+            nz-tooltip nzTitle="创建试题">
+      <i class="anticon anticon-file-add"></i>
+      <span class="controlPanel-button__font">创建试题</span>
+    </button>
+  </div>
+
+  <!-- 试题测验-工作区 -->
+  <div class="question-workspace" #scrollContainers>
+    <!-- 用户中心-工作区-显示区域 -->
+    <div class="workspace-display" nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 8, xl: 8, xxl: 8 }">
+      <!--显示区域-卡片__题目-->
+      <div *ngFor="let question of questionList" class="question-card" nz-col nzXs="24" nzSm="24" nzMd="24" nzLg="24"
+           nzXl="24">
+        <nz-card [nzCover]="coverQuestion" nzTitle="{{question.description}}" [nzActions]="[actionPublish,actionEdit,actionDelete,actionStatistics,actionShowOriginalAnswer]" [nzType]="'inner'"
+                 [nzHoverable]="'true'">
+        </nz-card>
+        <!-- 试题的内容 -->
+        <ng-template #coverQuestion>
+          <div *ngFor="let option of question.optionList" (click)="editQuestion(question)">
+            {{option.content}}
+          </div>
+        </ng-template>
+        <!-- 动作-发布 -->
+        <ng-template #actionPublish>
+          <div nz-tooltip nzTitle="发布" (click)="publishQuestion(question)">
+            <i class="anticon anticon-qrcode"></i>
+          </div>
+        </ng-template>
+        <!-- 动作-编辑 -->
+        <ng-template #actionEdit>
+          <div nz-tooltip nzTitle="编辑" (click)="editQuestion(question)">
+            <i class="anticon anticon-edit"></i>
+          </div>
+        </ng-template>
+        <!-- 动作-删除 -->
+        <ng-template #actionDelete>
+          <div nz-tooltip nzTitle="删除" (click)="questionDelete(question.questionId)">
+            <i class="anticon anticon-delete"></i>
+          </div>
+        </ng-template>
+         <!--动作-显示题目的回答选项 -->
+        <ng-template #actionStatistics>
+          <div nz-tooltip nzTitle="显示答题情况" (click)="statisticsAnswer(question)">
+            <i class="anticon anticon-eye-o"></i>
+          </div>
+        </ng-template>
+        <!--动作-显示正确答案 -->
+        <ng-template #actionShowOriginalAnswer>
+          <div nz-tooltip nzTitle="显示正确答案" (click)="showAnswer(question)">
+            <i class="anticon anticon-check-circle-o"></i>
+          </div>
+        </ng-template>
+      </div>
+
+    </div>
+    <!-- 回到顶部按钮 -->
+    <nz-back-top [nzTarget]="scrollContainers"></nz-back-top>
+  </div>
+</nz-content>
