@@ -5,22 +5,23 @@
     <nz-table>
       <thead>
       <tr>
-        <th> 发布ID</th>
         <th>发布时间</th>
         <th>查看具体回答情况</th>
       </tr>
       </thead>
       <tbody>
       <tr *ngFor="let publish of publishList">
-        <td> {{publish.publishId}}</td>
-        <td>{{publish.time}}</td>
-        <td><a (click)="statistcsAnswer(publish)">查看此次发布</a></td>
+        <td>{{publish.date}}</td>
+        <td><a (click)="statistcsAnswer(publish,question)">查看此次发布</a></td>
       </tbody>
     </nz-table>
 </div>
 </div>
   <!--显示试题回答情况-->
   <div  *ngIf="isShowAnswer">
+    <!--显示每个选项被选择的次数-->
+    <div echarts [options]="histogram" [style]="{'width': '100%', 'height': '5em', 'display': 'inline-block'}">
+    </div>
     <!--饼状图-->
     <div echarts [options]="chartOption" [style]="{'width': '100%', 'height': '5em', 'display': 'inline-block'}">
     </div>
@@ -30,13 +31,22 @@
       <thead>
       <tr>
         <th nzWidth="150px">答题者姓名</th>
-        <th nzWidth="150px">所选答案</th>
+        <th nzWidth="80px">所选答案</th>
       </tr>
       </thead>
       <tbody>
+
       <tr *ngFor="let answer of answerList">
         <td> {{answer.respondentInfo}}</td>
-        <td>{{answer.answerId}}</td>
+        <td>
+          <span *ngFor="let option of question.optionList">
+          <b *ngIf="answer.answerId == option.optionId">
+          选项{{ question.optionList.indexOf(option) + 1}}
+          </b>
+            </span>
+        </td>
+      </tr>
+
       </tbody>
     </nz-table>
 

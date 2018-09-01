@@ -23,6 +23,7 @@ export class QuestionEditModalComponent implements OnInit {
   description: string;
   optionList: Option[];
   originalAnswer: number;
+  originalAnswerString: string;
   userId: number;
   /*属性装饰器，声明对子组件元素的实例引用*/
   @ViewChild('appAddOptionModalModal')
@@ -46,6 +47,7 @@ export class QuestionEditModalComponent implements OnInit {
     this.description = question.description;
     this.optionList = question.optionList;
     this.originalAnswer = question.originalAnswer;
+    this.originalAnswerString = question.originalAnswer.toString();
     this.isVisible = true;
   }
   /**
@@ -101,6 +103,7 @@ export class QuestionEditModalComponent implements OnInit {
      */
   handleOk(): void {
     log('编辑试题__确定');
+    this.originalAnswer = Number(this.originalAnswerString);
     log('正确选项：' + this.originalAnswer);
     this.questionService.modifyQuestion({
       questionId: this.question.questionId,

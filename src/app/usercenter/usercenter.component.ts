@@ -59,8 +59,14 @@ export class UsercenterComponent implements OnInit {
       // avator: '../assets/img/avatar/default_avatar.png'
     };
     /** Test Environment 测试环境__数据传输 **/
-    this.folder = DATA;
+    // this.folder = DATA;
     /** Test Environment end 测试环境__数据传输-结束 **/
+    this.folder = {
+      folderName: '根文件夹',
+      folderId: 0,
+      parent: 0,
+      child: []
+    };
   }
 
   // 右键菜单监听函数
@@ -213,6 +219,11 @@ export class UsercenterComponent implements OnInit {
         });
       }
     }
+  }
+  // 按照名称搜索幻灯片
+  searchSlideByName(slide: Slide[]) {
+    this.folder.slideVos = slide;
+    this.folder.child = [];
   }
 
   triggerToggle(): void {

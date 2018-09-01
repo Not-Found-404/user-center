@@ -136,7 +136,8 @@ export class Nf4AppComponent implements OnInit {
   }
   modifyAvatar(): void {
     /* 点击修改头像 */
-    window.open('toAvatorEditpage');
+    // 在当前窗口打开修改头像网页
+    window.location.href = 'toAvatorEditpage';
   }
   // 按照名称搜索
   searchFile(event: any): void  {

@@ -49,7 +49,7 @@ export class QuestionTestComponent implements OnInit {
   ) {
     this.parentComponent = nf4AppComponent;
     /** Test Environment 测试环境__数据传输 **/
-    this.questionList = QUESTION;
+    // this.questionList = QUESTION;
     /** Test Environment end 测试环境__数据传输-结束 **/
   }
   ngOnInit() {

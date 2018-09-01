@@ -2,3 +2,11 @@
   white-space: nowrap;  /*强制span不换行*/
   display: inline-block;  /*将span当做块级元素对待*/
 }
+/* 媒体响应 */
+
+@media screen and (max-width: 385px){
+  .ng-untouched{
+    width:50%;
+  }
+}
+

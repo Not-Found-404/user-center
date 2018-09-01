@@ -7,7 +7,7 @@ export const QUESTION: Question[] = [
   {
     userId: 1,
     questionId: 1,
-    originalAnswer: 1, // 正确答案
+    originalAnswer: 111, // 正确答案
     description: '这是问题1',
     optionList: [
       {
@@ -17,6 +17,14 @@ export const QUESTION: Question[] = [
       {
         optionId: 222,
         content: '选项2'
+      },
+      {
+        optionId: 333,
+        content: '选项3'
+      },
+      {
+        optionId: 444,
+        content: '选项4'
       }
     ],
     publishList: [
@@ -35,63 +43,7 @@ export const QUESTION: Question[] = [
   {
     userId: 1,
     questionId: 1,
-    originalAnswer: 1, // 正确答案
-    description: '这是问题1',
-    optionList: [
-      {
-        optionId: 111,
-        content: '选项1'
-      },
-      {
-        optionId: 222,
-        content: '选项2'
-      }
-    ],
-    publishList: [
-      {
-        publishId: 1,
-        questionId: 1,
-        time: new Date(),
-      },
-      {
-        publishId: 2,
-        questionId: 1,
-        time: new Date('2017-01-08'),
-      }
-    ]
-  },
-  {
-    userId: 1,
-    questionId: 1,
-    originalAnswer: 1, // 正确答案
-    description: '这是问题1',
-    optionList: [
-      {
-        optionId: 111,
-        content: '选项1'
-      },
-      {
-        optionId: 222,
-        content: '选项2'
-      }
-    ],
-    publishList: [
-      {
-        publishId: 1,
-        questionId: 1,
-        time: new Date(),
-      },
-      {
-        publishId: 2,
-        questionId: 1,
-        time: new Date('2017-01-08'),
-      }
-    ]
-  },
-  {
-    userId: 1,
-    questionId: 1,
-    originalAnswer: 1, // 正确答案
+    originalAnswer: 333, // 正确答案
     description: '这是问题1',
     optionList: [
       {

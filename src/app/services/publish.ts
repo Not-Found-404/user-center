@@ -4,5 +4,6 @@ export class Publish {
   publishId?: number;
   questionId?: number;
   time?: Date;
+  date?: string;
   question?: Question;
 }
