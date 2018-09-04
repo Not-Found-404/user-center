@@ -1,10 +1,11 @@
-import {Injectable} from '@angular/core';
+import {EventEmitter, Injectable} from '@angular/core';
 import {Observable} from 'rxjs/index';
 import {HttpClient, HttpClientModule, HttpHeaders} from '@angular/common/http';
 import {Result} from './result';
 import {Folder} from './folder';
 import {NzTreeNode} from 'ng-zorro-antd';
 import {TreeNode} from './TreeNode';
+import {Slide} from './slide';
 
 const httpOptions = {
   headers: new HttpHeaders({'Content-Type': 'application/json'})
@@ -25,6 +26,9 @@ export class FolderService {
 
   // 当前选中的文件节点
   activedNode: NzTreeNode;
+  // 添加数据监听，观察者模式，自动订阅事件，管理一系列订阅者并向其发布事件的对象，事件触发与事件监听器功能，创建服务，new一个EventEmitter
+  change: EventEmitter<Slide[]>;
+
 
   /**
    * 获得当前登录用户的文件树 (测试完成)
@@ -85,6 +89,7 @@ export class FolderService {
   constructor(private http: HttpClient) {
     this.folderUrl = 'folder/';
     this.activedNode = null;
+    this.change = new EventEmitter();
   }
 
   /**

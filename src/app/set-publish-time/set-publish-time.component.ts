@@ -82,7 +82,8 @@ export class SetPublishTimeComponent implements OnInit {
         question: this.question
       }).subscribe((publish: Publish) => {
         this.hostname = location.host.toString();
-       this.value = this.hostname + '/nf4slide/toPublishPage?questionId=' +  this.question.questionId + '&publishId=' + publish.publishId
+       this.value = 'http://' + this.hostname + '/nf4slide/toPublishPage?questionId='
+         +  this.question.questionId + '&publishId=' + publish.publishId
        + '&publishDate=' + publish.time;
         // 跳转到生成二维码的组件
         this.appGenerateQRCodeModal.generateQRCode(this.value);

@@ -150,8 +150,11 @@ export class Nf4AppComponent implements OnInit {
           slideId: null,
           folderId: null
         }).subscribe((data: Slide[]) => {
-          this.folder.slideVos = data;
-          this.folder.child = [];
+          // 如果组件中，修改了某些数据，需要刷新用户中心，用户中心在其他组件中，那么就可以发送数据过去，那边接收到这个数据比对一下，刷新列表。
+          this.folderService.change.emit(data);
+          // this.folder.slideVos = data;
+          // this.folder.child = [];
+
         });
       }
     }

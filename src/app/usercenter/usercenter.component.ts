@@ -67,6 +67,12 @@ export class UsercenterComponent implements OnInit {
       parent: 0,
       child: []
     };
+// 接收发射过来的数据
+    this.folderService.change.subscribe((value: Slide[]) => {
+      // 这里就可以调取接口，刷新用户中心的文件夹中slideVos数据
+      this.folder.slideVos = value;
+      this.folder.child = [];
+    });
   }
 
   // 右键菜单监听函数
@@ -291,6 +297,7 @@ export class UsercenterComponent implements OnInit {
       nzCancelText: '取消',
       nzOnCancel  : () => console.log('删除对话框_取消')
     });
+
   }
 
 }
