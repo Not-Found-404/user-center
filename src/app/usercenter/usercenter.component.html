@@ -12,15 +12,15 @@
     <div class="controlPanel-navigate">
       <button class="controlPanel-button usercenter-sider__trigger-button" (click)="triggerToggle()" nz-button
               nzType="default" nz-tooltip nzTitle="切换侧边栏">
-        <i class="anticon anticon-bars"></i>
+        <i nz-icon type="bars" theme="outline"></i>
       </button>
       <button class="controlPanel-button" nz-button nzType="default"
               nz-tooltip nzTitle="上一级文件夹" (click)="getFolder(folder.parent)">
-        <i class="anticon anticon-rollback"></i>上一级
+        <i nz-icon type="arrow-up" theme="outline"></i>上一级
       </button>
       <button class="controlPanel-button" nz-button nzType="default"
               nz-tooltip nzTitle="主目录" (click)="getFolder(user.folderId)">
-        <i class="anticon anticon-folder"></i>主目录
+        <i nz-icon type="folder" theme="outline"></i>主目录
       </button>
     </div>
   </div>
@@ -29,25 +29,25 @@
   <div class="controlPanel__button-group">
     <button (click)="addNewSlide()" class="controlPanel-button" nz-button nzType="default"
             nz-tooltip nzTitle="创建幻灯片">
-      <i class="anticon anticon-file-add"></i>
+      <i nz-icon type="file-add" theme="outline"></i>
       <span class="controlPanel-button__font">创建幻灯片</span>
     </button>
 
     <button (click)="addNewFolder()" class="controlPanel-button" nz-button nzType="default"
             nz-tooltip nzTitle="新建文件夹">
-      <i class="anticon anticon-folder-add"></i>
+      <i nz-icon type="folder-add" theme="outline"></i>
       <span class="controlPanel-button__font">新建文件夹</span>
     </button>
 
     <button (click)="importSlide()" class="controlPanel-button" nz-button nzType="default"
             nz-tooltip nzTitle="导入幻灯片">
-      <i class="anticon anticon-upload"></i>
+      <i nz-icon type="cloud-upload" theme="outline"></i>
       <span class="controlPanel-button__font">导入幻灯片</span>
     </button>
   </div>
 
   <!-- 用户中心-工作区 -->
-  <div class="usercenter-workspace" #scrollContainer>
+  <div class="usercenter-workspace" #scrollContainer >
     <!-- 用户中心-工作区-显示区域 -->
     <div class="workspace-display" nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 8, xl: 8, xxl: 8 }">
 
@@ -70,19 +70,19 @@
         <!-- 动作-打开 -->
         <ng-template #actionOpen>
           <div nz-tooltip nzTitle="打开文件夹" (click)="getFolder(child.folderId)">
-            <i class="anticon anticon-folder-open"></i>
+            <i nz-icon type="folder-open" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-重命名 -->
         <ng-template #actionRename>
           <div nz-tooltip nzTitle="重命名" (click)="eidtFolderName(child)">
-            <i class="anticon anticon-edit"></i>
+            <i nz-icon type="form" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-移动文件 -->
         <ng-template #actionMove>
           <div nz-tooltip nzTitle="移动到" (click)="folderMove(child)">
-            <i class="anticon anticon-arrow-right"></i>
+            <i nz-icon type="right-square" theme="outline"></i>
           </div>
         </ng-template>
         <ng-template #folderDropDown>
@@ -111,25 +111,25 @@
         <!-- 动作-演讲 -->
         <ng-template #actionSpeech>
           <div nz-tooltip nzTitle="演讲" (click)="playWithSync(child.slideId)">
-            <i class="anticon anticon-video-camera"></i>
+            <i nz-icon type="video-camera" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-编辑 -->
         <ng-template #actionEdit>
           <div nz-tooltip nzTitle="编辑" (click)="editSlide(child.slideId)">
-            <i class="anticon anticon-file-ppt"></i>
+            <i nz-icon type="edit" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-重命名 -->
         <ng-template #actionRename>
           <div nz-tooltip nzTitle="重命名" (click)="eidtSlideName(child)">
-            <i class="anticon anticon-edit"></i>
+            <i nz-icon type="form" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-移动到 -->
         <ng-template #actionMove>
           <div nz-tooltip nzTitle="移动到" (click)="slideMove(child)">
-            <i class="anticon anticon-arrow-right"></i>
+            <i nz-icon type="right-square" theme="outline"></i>
           </div>
         </ng-template>
         <ng-template #slideDropDown>

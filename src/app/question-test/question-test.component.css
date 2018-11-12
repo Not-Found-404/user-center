@@ -3,6 +3,7 @@
   display: flex;/*弹性布局*/
   flex-direction: column !important;/*主轴的方向（即项目的排列方向）*/
   overflow: hidden !important;/*当内容溢出元素框时发生的事情，内容会被修剪，并且其余内容是不可见的，具有最高优先级*/
+  height:100%;
 }
 .question-controlPanel {
   /* 控制面板 */
@@ -17,16 +18,6 @@
   flex-direction: row;
   border-bottom: 1px solid #eaeaea;
   border-left: 1px solid #eaeaea;
-}
-.question-sider__trigger-button{
-  /* 试题检测-侧边栏__切换触发 */
-  display: flex;
-  align-items: center; /*项目在交叉轴上如何对齐*/
-  justify-content: center; /*项目在主轴上的对齐方式*/
-  width: 5em;
-  height: 100%;
-  color:rgb(26, 67, 130);
-  border-right: 1px solid #eaeaea;
 }
 .controlPanel__button-group {
   /* 控制面板-按钮组 */
@@ -46,6 +37,16 @@
   border-radius: 0;
   border: none;
   background: transparent; /*背景透明*/
+}
+.question-sider__trigger-button{
+  /* 试题检测-侧边栏__切换触发 */
+  display: flex;
+  align-items: center; /*项目在交叉轴上如何对齐*/
+  justify-content: center; /*项目在主轴上的对齐方式*/
+  width: 5em;
+  height: 100%;
+  color:rgb(26, 67, 130);
+  border-right: 1px solid #eaeaea;
 }
 .question-workspace {
   /* 试题检测-工作区 */

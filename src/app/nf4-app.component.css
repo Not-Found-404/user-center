@@ -3,6 +3,10 @@
   height: 100%;
 }
 
+.usercenter-main{
+  overflow: hidden !important; /* 隐藏用户中心超出边界区域 */
+}
+
 .usercenter-sider {
   /* 用户中心-侧边栏 */
   background-color: #f4f4f4;

@@ -15,7 +15,7 @@
     <div class="controlPanel-navigate">
       <button class="controlPanel-button question-sider__trigger-button"  nz-button
               nzType="default" nz-tooltip nzTitle="切换侧边栏" (click)="triggerToggle()">
-        <i class="anticon anticon-bars"></i>
+        <i nz-icon type="bars" theme="outline"></i>
       </button>
     </div>
   </div>
@@ -24,7 +24,7 @@
   <div class="controlPanel__button-group">
     <button (click)="addNewQuestion()" class="controlPanel-button" nz-button nzType="default"
             nz-tooltip nzTitle="创建试题">
-      <i class="anticon anticon-file-add"></i>
+      <i nz-icon type="file-add" theme="outline"></i>
       <span class="controlPanel-button__font">创建试题</span>
     </button>
   </div>
@@ -42,37 +42,37 @@
         <!-- 试题的内容 -->
         <ng-template #coverQuestion>
           <div *ngFor="let option of question.optionList" (click)="editQuestion(question)" class="question-option-content">
-            <i class="anticon anticon-form"></i> {{option.content}}
+            <i nz-icon type="form" theme="outline"></i> {{option.content}}
           </div>
         </ng-template>
         <!-- 动作-发布 -->
         <ng-template #actionPublish>
           <div nz-tooltip nzTitle="发布" (click)="publishQuestion(question)">
-            <i class="anticon anticon-qrcode"></i>
+            <i nz-icon type="qrcode" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-编辑 -->
         <ng-template #actionEdit>
           <div nz-tooltip nzTitle="编辑" (click)="editQuestion(question)">
-            <i class="anticon anticon-edit"></i>
+            <i nz-icon type="edit" theme="outline"></i>
           </div>
         </ng-template>
         <!-- 动作-删除 -->
         <ng-template #actionDelete>
           <div nz-tooltip nzTitle="删除" (click)="questionDelete(question.questionId)">
-            <i class="anticon anticon-delete"></i>
+            <i nz-icon type="delete" theme="outline"></i>
           </div>
         </ng-template>
          <!--动作-显示题目的回答选项 -->
         <ng-template #actionStatistics>
           <div nz-tooltip nzTitle="显示答题情况" (click)="statisticsAnswer(question)">
-            <i class="anticon anticon-eye-o"></i>
+            <i nz-icon type="area-chart" theme="outline"></i>
           </div>
         </ng-template>
         <!--动作-显示正确答案 -->
         <ng-template #actionShowOriginalAnswer>
           <div nz-tooltip nzTitle="显示正确答案" (click)="showAnswer(question)">
-            <i class="anticon anticon-check-circle-o"></i>
+            <i nz-icon type="file-done" theme="outline"></i>
           </div>
         </ng-template>
       </div>

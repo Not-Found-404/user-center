@@ -1,5 +1,5 @@
 import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {NzMenuItemDirective, NzDropdownContextComponent, NzDropdownService, NzModalService} from '../../node_modules/ng-zorro-antd';
+import {NzMenuItemDirective, NzDropdownContextComponent, NzDropdownService, NzModalService, NzIconService} from '../../node_modules/ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
 import {User} from './services/user';
 import {Folder} from './services/folder';
@@ -15,6 +15,7 @@ import {log} from 'util';
 
 /** Test Environment 测试环境__数据传输 **/
 import {DATA} from './mockData';
+import { from } from 'rxjs';
 
 /** Test Environment end 测试环境__数据传输-结束 **/
 
@@ -52,7 +53,8 @@ export class Nf4AppComponent implements OnInit {
               private slideService: SlideService,
               private folderService: FolderService,
               private messageService: NzMessageService,   // 全局消息服务-ant
-              private modalService: NzModalService        // 对话框服务-ant
+              private modalService: NzModalService,       // 对话框服务-ant
+              private nzIconService: NzIconService        // 蚂蚁框架图标服务
   ) {
     this.user = {
       username: '新用户',
@@ -62,9 +64,9 @@ export class Nf4AppComponent implements OnInit {
       /* 本地环境 */
       // avator: '../assets/img/avatar/default_avatar.png'
     };
-    /** Test Environment 测试环境__数据传输 **/
-    this.folder = DATA;
-    /** Test Environment end 测试环境__数据传输-结束 **/
+
+    /* 修改静态资源访问路径，Ant Design 框架，映射到服务器路径 */
+    this.nzIconService.changeAssetsSource('http://www.qtu404.com/angular/');
   }
 
   // 右键菜单监听函数

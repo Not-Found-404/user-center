@@ -58,9 +58,6 @@ export class UsercenterComponent implements OnInit {
       /* 本地环境 */
       // avator: '../assets/img/avatar/default_avatar.png'
     };
-    /** Test Environment 测试环境__数据传输 **/
-    // this.folder = DATA;
-    /** Test Environment end 测试环境__数据传输-结束 **/
     this.folder = {
       folderName: '根文件夹',
       folderId: 0,
@@ -73,6 +70,9 @@ export class UsercenterComponent implements OnInit {
       this.folder.slideVos = value;
       this.folder.child = [];
     });
+    /** Test Environment 测试环境__数据传输 **/
+    // this.folder = DATA;
+    /** Test Environment end 测试环境__数据传输-结束 **/
   }
 
   // 右键菜单监听函数
@@ -98,7 +98,7 @@ export class UsercenterComponent implements OnInit {
   deleteFolder(folderId: number): void {
     /* 删除文件夹函数 */
     /* 提示信息_删除文件id */
-    log('删除文件夹ID:' + folderId.toString());
+    // log('删除文件夹ID:' + folderId.toString());
     /* 删除文件夹业务逻辑 */
     this.folderService.deleteFolder(folderId).subscribe((data: Result) => {
       if (data.code === 200) {
@@ -115,7 +115,7 @@ export class UsercenterComponent implements OnInit {
   slideMenuPlay(slideId: number): void {
     /* 播放幻灯片逻辑 */
     window.open('toPlayPage?slideId=' + slideId);
-    log('播放幻灯片ID:' + slideId.toString());
+    // log('播放幻灯片ID:' + slideId.toString());
   }
 
   // 右键菜单_删除幻灯片
@@ -126,7 +126,7 @@ export class UsercenterComponent implements OnInit {
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
-    log('删除幻灯片ID:' + slideId.toString());
+    // log('删除幻灯片ID:' + slideId.toString());
     /* 删除幻灯片业务逻辑 */
     this.slideService.delelteSlideInfo(slideId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {
@@ -195,7 +195,7 @@ export class UsercenterComponent implements OnInit {
 
   folderMove(folder: Folder): void {
     /*在log中输出，文件夹移动*/
-    log('移动文件:' + folder.folderId.toString());
+    // log('移动文件:' + folder.folderId.toString());
     // 文件夾移动
     this.appMoveFileModal.showModal(folder, 1);
   }
@@ -238,7 +238,7 @@ export class UsercenterComponent implements OnInit {
 
   editSlide(slideId: number): void {
     /* 编辑幻灯片函数 */
-    log('编辑幻灯片id:' + slideId.toString());
+    // log('编辑幻灯片id:' + slideId.toString());
     let isMobileDevice = false;  // 判断设备是否为移动设备
     // 获取浏览器UA信息，判断设备类型
     const userAgent = navigator.userAgent;

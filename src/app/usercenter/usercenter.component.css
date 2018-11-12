@@ -2,6 +2,7 @@
   display: flex;
   flex-direction: column !important;
   overflow: hidden !important;
+  height:100%;
 }
 .usercenter-controlPanel {
   /* 控制面板 */
@@ -83,8 +84,8 @@
   /* 用户中心-工作区 */
   height: 100%;
   width: 100%;
+  overflow-x: hidden !important;
   overflow-y: auto;
-  overflow-x: hidden;
 }
 
 .workspace-display {

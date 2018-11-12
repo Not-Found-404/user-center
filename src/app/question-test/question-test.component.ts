@@ -76,7 +76,7 @@ export class QuestionTestComponent implements OnInit {
      */
   getAllQuestions(userId: number): void {
     if (userId != null) {
-      log('获取用户的所有试题' + userId);
+      // log('获取用户的所有试题' + userId);
       this.questionService.findAllQuestions().subscribe((questionList: Question[]) => {
         this.questionList = questionList;
       });
@@ -113,7 +113,7 @@ export class QuestionTestComponent implements OnInit {
      * @returns void
      */
   addNewQuestion(): void {
-    log('创建新的试题');
+    // log('创建新的试题');
     this.questionService.addNewQuestion(this.question).subscribe(__ => {
       // 显示创建成功信息
       this.getAllQuestions(this.user.userId);
@@ -163,7 +163,7 @@ export class QuestionTestComponent implements OnInit {
   deleteQuestion(questionId: number): void {
     /*删除试题*/
     /* 提示信息_删除试题id */
-    log('删除试题ID:' + questionId.toString());
+    // log('删除试题ID:' + questionId.toString());
     /* 删除试题业务逻辑 */
     this.questionService.deleteQuestion(questionId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {
