@@ -60,13 +60,13 @@ export class Nf4AppComponent implements OnInit {
       username: '新用户',
       /* 用户初始头像 */
       /* 生产环境 */
-      avator: 'http://www.qtu404.com/angular/assert/image/avatar/default_avatar.png'
+      avator: 'http://www.qtu404.com/nf4slide/assets/avatar/default_avatar.png'
       /* 本地环境 */
       // avator: '../assets/img/avatar/default_avatar.png'
     };
 
-    /* 修改静态资源访问路径，Ant Design 框架，映射到服务器路径 */
-    this.nzIconService.changeAssetsSource('http://www.qtu404.com/angular/');
+    /* 修改静态资源访问路径，Ant Design 框架，映射到服务器路径 assets 文件夹 */
+    this.nzIconService.changeAssetsSource('http://www.qtu404.com/nf4slide/');
   }
 
   // 右键菜单监听函数
