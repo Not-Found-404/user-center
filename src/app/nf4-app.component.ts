@@ -66,7 +66,7 @@ export class Nf4AppComponent implements OnInit {
     };
 
     /* 修改静态资源访问路径，Ant Design 框架，映射到服务器路径 assets 文件夹 */
-    this.nzIconService.changeAssetsSource('http://www.qtu404.com/nf4slide/');
+    // this.nzIconService.changeAssetsSource('http://www.qtu404.com/nf4slide/');
   }
 
   // 右键菜单监听函数

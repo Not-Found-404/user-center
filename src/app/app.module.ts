@@ -27,6 +27,7 @@ import {NgxEchartsModule} from 'ngx-echarts';
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 /*路由*/
 import { RouterModule, Routes } from '@angular/router';
+import { AttendanceComponent } from './attendance/attendance.component';
 
 /*路由跳转到问题检测:question-test*/
 const appRoutes: Routes = [
@@ -35,6 +36,7 @@ const appRoutes: Routes = [
   { path: 'usercenterA', redirectTo: '/usercenter', pathMatch: 'full' },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'question-test', component: QuestionTestComponent },
+  { path: 'attendance', component: AttendanceComponent }
 ];
 registerLocaleData(zh);
 
@@ -51,7 +53,8 @@ registerLocaleData(zh);
     StatistcsAnswerModalComponent,
     GenerateQRCodeModalComponent,
     ShowAnswerModalComponent,
-    QuestionTestComponent
+    QuestionTestComponent,
+    AttendanceComponent
   ],
   imports: [
     BrowserModule,

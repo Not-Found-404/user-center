@@ -7,7 +7,6 @@ import {SlideService} from '../services/slide.service';
 import {FolderService} from '../services/folder.service';
 import {User} from '../services/user';
 import {DATA} from '../mockData';
-import {log} from 'util';
 import {Result} from '../services/result';
 import {UserService} from '../services/user.service';
 import {Slide} from '../services/slide';
@@ -160,7 +159,7 @@ export class UsercenterComponent implements OnInit {
 
   // 添加新的文件夹
   addNewFolder(): void {
-    log('开始新建文件夹');
+    console.log('开始新建文件夹');
     this.folderService.save({
       parent: this.folder.folderId,
       folderName: '新建文件夹',
@@ -176,7 +175,7 @@ export class UsercenterComponent implements OnInit {
 
   // 添加新的幻灯片
   addNewSlide(): void {
-    log('创建新的幻灯片');
+    console.log('创建新的幻灯片');
     this.slideService.addNewSlide(this.folder.folderId).subscribe(_ => {
       this.getFolder(this.folder.folderId);
       // 显示创建成功信息

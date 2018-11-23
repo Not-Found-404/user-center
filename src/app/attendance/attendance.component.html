@@ -1,0 +1,48 @@
+<!-- 考勤信息显示组件 -->
+<nz-content class="usercenter-content">
+
+  <!-- 考勤界面-用户控制按钮 -->
+  <div class="usercenter-controlPanel">
+
+    <!-- 控制面板-导航栏 -->
+    <div class="controlPanel-navigate">
+      <button class="controlPanel-button usercenter-sider__trigger-button" (click)="triggerToggle()" nz-button
+              nzType="default" nz-tooltip nzTitle="切换侧边栏">
+        <i nz-icon type="bars" theme="outline"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 考勤界面-工作区 -->
+  <div class="usercenter-workspace">
+    <!-- 考勤界面-工作区-显示区域 -->
+    <div class="workspace-display" nz-row [nzGutter]="{ xs: 8, sm: 8, md: 8, lg: 8, xl: 8, xxl: 8 }">
+
+      <nz-table #attendanceDataTable [nzData]="dataSet">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Age</th>
+            <th>Address</th>
+            <th>Action</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of attendanceDataTable.data">
+            <td>{{data.name}}</td>
+            <td>{{data.age}}</td>
+            <td>{{data.address}}</td>
+            <td>
+              <a>Action 一 {{data.name}}</a>
+              <nz-divider nzType="vertical"></nz-divider>
+              <a>Delete</a>
+            </td>
+          </tr>
+        </tbody>
+      </nz-table>
+
+    </div>
+
+  </div>
+</nz-content>

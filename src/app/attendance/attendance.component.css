@@ -1,0 +1,61 @@
+.usercenter-content {
+  display: flex;
+  flex-direction: column !important;
+  overflow: hidden !important;
+  height:100%;
+}
+
+.usercenter-controlPanel {
+  /* 控制面板 */
+  width: 100%;
+}
+
+.controlPanel-navigate {
+  /* 控制面板-导航栏 */
+  height: 2.5em;
+  width: 100%;
+  background-color: #f4f4f4;
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #eaeaea;
+  border-left: 1px solid #eaeaea;
+}
+
+.controlPanel-button {
+  /* 控制面板-按钮 */
+  width: 100%;
+  max-width: 10em;
+  height: 100%;
+  border-radius: 0;
+  border: none;
+  background: transparent;
+}
+
+.controlPanel-button:hover {
+  background-color: #eaeaea;
+}
+
+.usercenter-sider__trigger-button {
+  /* 用户中心-侧边栏__切换触发 */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 5em;
+  height: 100%;
+  color:rgb(26, 67, 130);
+  border-right: 1px solid #eaeaea;
+}
+
+.usercenter-workspace {
+  /* 用户中心-工作区 */
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden !important;
+  overflow-y: auto;
+}
+
+.workspace-display {
+  /* 用户中心 */
+  width: 100%;
+  height: 100%;
+}
