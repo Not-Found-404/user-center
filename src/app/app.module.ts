@@ -28,6 +28,7 @@ import { NgxQRCodeModule } from 'ngx-qrcode2';
 /*路由*/
 import { RouterModule, Routes } from '@angular/router';
 import { AttendanceComponent } from './attendance/attendance.component';
+import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
 
 /*路由跳转到问题检测:question-test*/
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   { path: 'usercenterA', redirectTo: '/usercenter', pathMatch: 'full' },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'question-test', component: QuestionTestComponent },
-  { path: 'attendance', component: AttendanceComponent }
+  { path: 'attendance', component: AttendanceComponent },
+  { path: 'attendanceDetail/:id', component: AttendanceDetailComponent }
 ];
 registerLocaleData(zh);
 
@@ -54,7 +56,8 @@ registerLocaleData(zh);
     GenerateQRCodeModalComponent,
     ShowAnswerModalComponent,
     QuestionTestComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    AttendanceDetailComponent
   ],
   imports: [
     BrowserModule,

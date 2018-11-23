@@ -1,0 +1,43 @@
+<!-- 考勤具体信息显示组件 -->
+<nz-content class="usercenter-content">
+
+  <!-- 考勤界面-用户控制按钮 -->
+  <div class="usercenter-controlPanel">
+
+    <!-- 控制面板-导航栏 -->
+    <div class="controlPanel-navigate">
+      <button class="controlPanel-button usercenter-sider__trigger-button" (click)="triggerToggle()" nz-button
+              nzType="default" nz-tooltip nzTitle="切换侧边栏">
+        <i nz-icon type="bars" theme="outline"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 考勤界面-工作区 -->
+  <div class="usercenter-workspace">
+    <!-- 考勤界面-工作区-显示区域 -->
+    <div class="workspace-display">
+
+      <nz-table #attendanceDetailDataTable [nzData]="attendanceDetailDataSet" [nzShowPagination]="false" nz-row>
+        <thead>
+        <tr>
+          <th nzShowSort nzSortKey="userName">姓名</th>
+          <th nzShowSort nzSortKey="totalTime">总时间</th>
+          <th nzShowSort nzSortKey="exitNum">退出次数</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let data of attendanceDetailDataTable.data">
+          <td>{{data.identify}}</td>
+          <td>{{data.totalTime}}</td>
+          <td>{{data.exitTimes}}</td>
+        </tr>
+        </tbody>
+      </nz-table>
+
+    </div>
+
+  </div>
+</nz-content>
+
