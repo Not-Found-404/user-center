@@ -12,6 +12,11 @@ import {ATTENANCE} from '../mockData';
 })
 export class AttendanceComponent implements OnInit {
 
+  /**
+   * @author AmberXu
+   * @date 2018/11/23
+   * @Description: 课堂考勤模块
+  */
   // 得到父组件，调用更新
   parentComponent: Nf4AppComponent;
   attendanceDataSet: AttendanceListResponse[];

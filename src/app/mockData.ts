@@ -3,7 +3,7 @@ import {Folder} from './services/folder';
 import {Question, QuestionList} from './services/question';
 import {Option} from './services/option';
 import {Publish} from './services/publish';
-import {Attendance, AttendanceListResponse} from './services/attendance';
+import {Attendance, AttendanceListResponse, ViewStatistics} from './services/attendance';
 export const QUESTION: Question[] = [
   {
     userId: 1,
@@ -233,5 +233,21 @@ export const ATTENANCE: AttendanceListResponse[] = [
       {
         id: 11111,
       }
+  }
+]
+export const ATTENANCEDETAIL: ViewStatistics[] = [
+  {
+    id: 11,
+    identify: 'hahah',
+    totalTime: 54578,
+    exitTimes: 24,
+    attendanceId: 1111
+  },
+  {
+    id: 11,
+    identify: 'hahah',
+    totalTime: 54578,
+    exitTimes: 2,
+    attendanceId: 2222
   }
 ]
