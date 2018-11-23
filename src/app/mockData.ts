@@ -3,6 +3,7 @@ import {Folder} from './services/folder';
 import {Question, QuestionList} from './services/question';
 import {Option} from './services/option';
 import {Publish} from './services/publish';
+import {Attendance, AttendanceListResponse} from './services/attendance';
 export const QUESTION: Question[] = [
   {
     userId: 1,
@@ -215,3 +216,22 @@ export const DATA: Folder = {
     }
   ]
 };
+export const ATTENANCE: AttendanceListResponse[] = [
+  {
+    beginTime: '2018-11-11 22:22:22',
+    endTime: '2018-11-11 22:22:22',
+    slideName: '这是我的测试案例1',
+    attendance: {
+        id: 10000,
+      }
+  },
+  {
+    beginTime: '2018-11-11 0:0:0',
+    endTime: '2018-11-11 0:0:0',
+    slideName: '这是我的测试案例2',
+    attendance:
+      {
+        id: 11111,
+      }
+  }
+]

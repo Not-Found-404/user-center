@@ -7,9 +7,9 @@ export interface Attendance {
 }
 
 export class AttendanceListResponse {
-    beginTime?: Date;
-    endTime?: Date;
-    slideName?: number;
+    beginTime?: String;
+    endTime?: String;
+    slideName?: String;
     attendance?: Attendance;
 }
 

@@ -45,6 +45,6 @@ export class AttendanceService {
    */
   viewList(attendanceId: number): Observable<ViewStatistics[]> {
     console.log('service:获取数据库中的考勤具体信息');
-    return this.http.get<ViewStatistics[]>(this.attendanceUrl + `view/list`, httpOptions);
+    return this.http.get<ViewStatistics[]>(this.attendanceUrl + `view/list?attendanceId` + attendanceId , httpOptions);
   }
 }
