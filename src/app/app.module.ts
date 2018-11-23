@@ -22,12 +22,13 @@ import { StatistcsAnswerModalComponent } from './statistcs-answer-modal/statistc
 import { ShowAnswerModalComponent } from './show-answer-modal/show-answer-modal.component';
 /*添加为饼状图*/
 import { EchartsNg2Module } from 'echarts-ng2';
-import {NgxEchartsModule} from 'ngx-echarts';
+import { NgxEchartsModule } from 'ngx-echarts';
 /*生成二维码*/
 import { NgxQRCodeModule } from 'ngx-qrcode2';
 /*路由*/
 import { RouterModule, Routes } from '@angular/router';
 import { AttendanceComponent } from './attendance/attendance.component';
+import { DurationGraphComponent } from './duration-graph/duration-graph.component';
 
 /*路由跳转到问题检测:question-test*/
 const appRoutes: Routes = [
@@ -36,7 +37,8 @@ const appRoutes: Routes = [
   { path: 'usercenterA', redirectTo: '/usercenter', pathMatch: 'full' },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'question-test', component: QuestionTestComponent },
-  { path: 'attendance', component: AttendanceComponent }
+  { path: 'attendance', component: AttendanceComponent },
+  { path: 'duration-graph', component: DurationGraphComponent}
 ];
 registerLocaleData(zh);
 
@@ -54,7 +56,8 @@ registerLocaleData(zh);
     GenerateQRCodeModalComponent,
     ShowAnswerModalComponent,
     QuestionTestComponent,
-    AttendanceComponent
+    AttendanceComponent,
+    DurationGraphComponent
   ],
   imports: [
     BrowserModule,
