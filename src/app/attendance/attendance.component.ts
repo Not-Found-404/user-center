@@ -1,5 +1,5 @@
-import {Component, forwardRef, Host, Inject, OnInit} from '@angular/core';
-import {Nf4AppComponent} from '../nf4-app.component';
+import { Component, forwardRef, Host, Inject, OnInit } from '@angular/core';
+import { Nf4AppComponent } from '../nf4-app.component';
 
 @Component({
   selector: 'app-attendance',
@@ -9,27 +9,21 @@ import {Nf4AppComponent} from '../nf4-app.component';
 export class AttendanceComponent implements OnInit {
 
   // 得到父组件，调用更新
-  parentComponent:  Nf4AppComponent;
+  parentComponent: Nf4AppComponent;
 
   // 模拟数据
-  dataSet = [
+  attendanceDataSet = [
     {
-      key    : '1',
-      name   : 'John Brown',
-      age    : 32,
-      address: 'New York No. 1 Lake Park'
+      id: 12,                               // 幻灯片的id
+      endTime: '2018-11-11 22:22:22',       // 截止时间
+      beginTime: '2018-11-11 22:22:22',     // 开始时间
+      slideName: '中国风'                   // 看的幻灯片的名字
     },
     {
-      key    : '2',
-      name   : 'Jim Green',
-      age    : 42,
-      address: 'London No. 1 Lake Park'
-    },
-    {
-      key    : '3',
-      name   : 'Joe Black',
-      age    : 32,
-      address: 'Sidney No. 1 Lake Park'
+      id: 13,
+      endTime: '2018-11-11 22:22:22',
+      beginTime: '2018-11-11 22:22:22',
+      slideName: '中国风'
     }
   ];
 
