@@ -15,6 +15,10 @@
     "lib": [
       "es2017",
       "dom"
-    ]
+    ],
+    "paths": {
+      /* echart 最小化依赖文件 */
+      "echarts": ["node_modules/echarts/dist/echarts.min.js"]
+    }
   }
 }
