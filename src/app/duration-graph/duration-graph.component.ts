@@ -87,5 +87,7 @@ export class DurationGraphComponent implements OnInit {
       ]
     };
   }
-
+  triggerToggle(): void {
+    // 侧边栏
+  }
 }

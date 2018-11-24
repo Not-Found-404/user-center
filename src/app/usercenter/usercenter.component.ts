@@ -75,7 +75,7 @@ export class UsercenterComponent implements OnInit {
       this.folder.child = [];
     });
     /** Test Environment 测试环境__数据传输 **/
-    this.folder = DATA;
+    // this.folder = DATA;
     /** Test Environment end 测试环境__数据传输-结束 **/
   }
 
