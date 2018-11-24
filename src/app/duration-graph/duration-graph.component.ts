@@ -15,5 +15,7 @@ export class DurationGraphComponent implements OnInit {
 
   ngOnInit() {
   }
-
+  triggerToggle(): void {
+    // 侧边栏
+  }
 }
