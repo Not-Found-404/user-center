@@ -9,7 +9,6 @@ import {Question} from '../services/question';
 import { EChartOption } from 'echarts-ng2';
 import {Option} from '../services/option';
 
-/**/
 @Component({
   selector: 'app-statistcs-answer-modal',
   templateUrl: './statistcs-answer-modal.component.html',

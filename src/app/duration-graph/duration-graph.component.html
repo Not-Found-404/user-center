@@ -1,0 +1,29 @@
+<!-- 持续时间显示统计表界面 -->
+<nz-content class="usercenter-content">
+
+  <!-- 持续时间显示统计表界面-用户控制按钮 -->
+  <div class="usercenter-controlPanel">
+
+    <!-- 控制面板-导航栏 -->
+    <div class="controlPanel-navigate">
+      <button class="controlPanel-button usercenter-sider__trigger-button" (click)="triggerToggle()" nz-button nzType="default"
+        nz-tooltip nzTitle="切换侧边栏">
+        <i nz-icon type="bars" theme="outline"></i>
+      </button>
+    </div>
+
+  </div>
+
+  <!-- 考勤界面-工作区 -->
+  <div class="usercenter-workspace">
+    <!-- 考勤界面-工作区-显示区域 -->
+    <div class="workspace-display">
+
+      <div echarts [options]="durationHistogram" class="histogram">
+
+      </div>
+
+    </div>
+
+  </div>
+</nz-content>
