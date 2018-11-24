@@ -11,6 +11,8 @@ import {Result} from '../services/result';
 import {UserService} from '../services/user.service';
 import {Slide} from '../services/slide';
 import {Nf4AppComponent} from '../nf4-app.component';
+import {AttendanceService} from '../services/attendance.service';
+import {AttendanceListResponse} from '../services/attendance';
 
 @Component({
   selector: 'app-usercenter',
@@ -27,6 +29,8 @@ export class UsercenterComponent implements OnInit {
   user: User;
   // 当前打开的文件夹
   folder: Folder;
+  // 创建考勤id
+  attendanceId: number;
 
   // 得到父组件，调用更新
   parentComponent:  Nf4AppComponent;
@@ -44,6 +48,7 @@ export class UsercenterComponent implements OnInit {
               private userService: UserService,
               private slideService: SlideService,
               private folderService: FolderService,
+              private attendanceService: AttendanceService,
               private messageService: NzMessageService,   // 全局消息服务-ant
               private modalService: NzModalService,        // 对话框服务-ant
   @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent
@@ -70,7 +75,7 @@ export class UsercenterComponent implements OnInit {
       this.folder.child = [];
     });
     /** Test Environment 测试环境__数据传输 **/
-    // this.folder = DATA;
+    this.folder = DATA;
     /** Test Environment end 测试环境__数据传输-结束 **/
   }
 
@@ -113,8 +118,26 @@ export class UsercenterComponent implements OnInit {
   // 右键菜单_播放幻灯片
   slideMenuPlay(slideId: number): void {
     /* 播放幻灯片逻辑 */
-    window.open('toPlayPage?slideId=' + slideId);
+    // window.open('toPlayPage?slideId=' + slideId);
     // log('播放幻灯片ID:' + slideId.toString());
+    this.showAttendanceConfirm(slideId);
+  }
+  // 显示是否进行考勤的弹出框
+  showAttendanceConfirm(slideId: number): void {
+    this.modalService.confirm({
+      nzTitle     : '您是否要在播放幻灯片时进行考勤？',
+      nzContent   : '',
+      nzOkText    : '确定',
+      nzOkType    : 'info',
+      nzOnOk      : () => {
+        this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
+          this.attendanceId = attendanceId;
+        });
+        window.open('toPlayPage?slideId=' + slideId + '&attendanceId=' + this.attendanceId); // 确认
+      },
+      nzCancelText: '取消',
+      nzOnCancel  : () => window.open('toPlayPage?slideId=' + slideId)
+    });
   }
 
   // 右键菜单_删除幻灯片
@@ -185,7 +208,24 @@ export class UsercenterComponent implements OnInit {
 
   playWithSync(slideId: number): void {
     // 演讲点击事件
-    window.open('toPlayPage?slideId=' + slideId + '&control=true');
+    this.showAttendancePlay(slideId);
+  }
+  showAttendancePlay(slideId: number): void {
+    this.modalService.confirm({
+      nzTitle     : '您是否要在播放幻灯片时进行考勤？',
+      nzContent   : '',
+      nzOkText    : '确定',
+      nzOkType    : 'info',
+      nzOnOk      : () =>  {
+        this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
+          this.attendanceId = attendanceId;
+          console.log('创建考勤记录');
+        });
+        window.open('toPlayPage?slideId=' + slideId + '&attendanceId=' + this.attendanceId + '&control=true'); // 确认
+      },
+      nzCancelText: '取消',
+      nzOnCancel  : () => window.open('toPlayPage?slideId=' + slideId + '&control=true')
+    });
   }
   // 幻灯片移动
   slideMove(slide: Slide) {

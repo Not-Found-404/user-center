@@ -20,12 +20,13 @@ export class AttendanceService {
    * 课堂考勤的baseUrl
    */
   attendanceUrl: String;
+  attendance: Observable<AttendanceListResponse[]>;
   /**
    * 构造函数，注入一个 HttpClient服务
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.attendanceUrl = '/api/statistics/';
+    this.attendanceUrl = 'api/statistics/';
   }
 
   /**
@@ -35,7 +36,9 @@ export class AttendanceService {
    */
   findAttendanceList(): Observable<AttendanceListResponse[]> {
     console.log('获取当前登录用户的所有考勤记录');
-    return this.http.get<AttendanceListResponse[]>(this.attendanceUrl + `attendance/list`, httpOptions);
+    this.attendance = this.http.get<AttendanceListResponse[]>(this.attendanceUrl + `attendance/list`, httpOptions);
+    console.log(this.attendance);
+    return this.attendance;
   }
 
   /**
@@ -45,6 +48,15 @@ export class AttendanceService {
    */
   viewList(attendanceId: number): Observable<ViewStatistics[]> {
     console.log('service:获取数据库中的考勤具体信息');
-    return this.http.get<ViewStatistics[]>(this.attendanceUrl + `view/list?attendanceId` + attendanceId , httpOptions);
+    return this.http.get<ViewStatistics[]>(this.attendanceUrl + `view/list?attendanceId=` + attendanceId , httpOptions);
+  }
+  /**
+   * @author AmberXu
+   * @date 2018/11/24
+   * @Description: 创建考勤
+  */
+  createAttendance(slideId: number): Observable<number> {
+    console.log('service:创建考勤');
+    return this.http.get<number>(this.attendanceUrl + `attendance/save?slideId=` + slideId , httpOptions);
   }
 }

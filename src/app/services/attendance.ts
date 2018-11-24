@@ -10,7 +10,7 @@ export class AttendanceListResponse {
     beginTime?: String;
     endTime?: String;
     slideName?: String;
-    attendance?: Attendance;
+    id?: number;
 }
 
 export class ViewStatistics {

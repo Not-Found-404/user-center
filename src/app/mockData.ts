@@ -221,18 +221,13 @@ export const ATTENANCE: AttendanceListResponse[] = [
     beginTime: '2018-11-11 22:22:22',
     endTime: '2018-11-11 22:22:22',
     slideName: '这是我的测试案例1',
-    attendance: {
-        id: 10000,
-      }
+    id: 10000
   },
   {
     beginTime: '2018-11-11 0:0:0',
     endTime: '2018-11-11 0:0:0',
     slideName: '这是我的测试案例2',
-    attendance:
-      {
-        id: 11111,
-      }
+    id: 11111
   }
 ]
 export const ATTENANCEDETAIL: ViewStatistics[] = [

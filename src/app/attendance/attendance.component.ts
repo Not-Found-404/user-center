@@ -30,7 +30,7 @@ export class AttendanceComponent implements OnInit {
   ngOnInit() {
     this.getAttendanceList();
     /*模拟数据*/
-    this.attendanceDataSet = ATTENANCE;
+    // this.attendanceDataSet = ATTENANCE;
     // 模拟数据
   }
 
@@ -40,9 +40,9 @@ export class AttendanceComponent implements OnInit {
   }
   getAttendanceList(): void {
     log('获取考勤记录');
-   /* this.attendanceService.findAttendanceList().subscribe((attendanceDataSet: AttendanceListResponse[]) => {
+    this.attendanceService.findAttendanceList().subscribe((attendanceDataSet: AttendanceListResponse[]) => {
       this.attendanceDataSet = attendanceDataSet;
-    });*/
+    });
   }
 }
 

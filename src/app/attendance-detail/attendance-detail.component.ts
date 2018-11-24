@@ -27,7 +27,7 @@ export class AttendanceDetailComponent implements OnInit {
   ngOnInit() {
     this.getAttendanceListDetail();
     /*模拟数据*/
-    this.attendanceDetailDataSet = ATTENANCEDETAIL;
+    // this.attendanceDetailDataSet = ATTENANCEDETAIL;
     // 模拟数据
   }
   // 侧边栏切换函数，通过调用父组件的侧边栏切换函数
