@@ -39,7 +39,7 @@ export class AttendanceComponent implements OnInit {
     this.parentComponent.triggerToggle();
   }
   getAttendanceList(): void {
-    log('获取考勤记录');
+    console.log('获取考勤记录');
     this.attendanceService.findAttendanceList().subscribe((attendanceDataSet: AttendanceListResponse[]) => {
       this.attendanceDataSet = attendanceDataSet;
     });

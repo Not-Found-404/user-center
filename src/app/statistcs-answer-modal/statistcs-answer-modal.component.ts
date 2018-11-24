@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import {log} from 'util';
 import {PublishService} from '../services/publish.service';
 import {Publish} from '../services/publish';
 import {AnswerService} from '../services/answer.service';
@@ -132,7 +131,7 @@ export class StatistcsAnswerModalComponent implements OnInit {
    * @param questionId
    */
   statistcsPublish(question: Question): void {
-    log('统计题目的发布情况');
+    console.log('统计题目的发布情况');
     this.question = question;
     this.publishService.getPublishByQuuestionId(question.questionId).subscribe((publishList: Publish[]) => {
       this.publishList = publishList;
@@ -152,7 +151,7 @@ export class StatistcsAnswerModalComponent implements OnInit {
     this.countNumber = 0;
     this.numOfRightRespondent = 0;
     this.numOfWrongRespondent = 0;
-    for (let i = 0; i < this.countOfOption.length; i++){
+    for (let i = 0; i < this.countOfOption.length; i++) {
       this.countOfOption[i] = 0;
     }
     for (let num = 1; num <= this.question.optionList.length; num++) {
@@ -194,7 +193,7 @@ export class StatistcsAnswerModalComponent implements OnInit {
     // this.isShowAnswer = true;
     //   this.isShowPublish = false;
     // for (this.answer of this.answerList) {
-    //   log('答案：：' + this.answer);
+    //   console.log('答案：：' + this.answer);
     //   /*设置选项的数组测试-start*/
     //   for (this.option of this.question.optionList) {
     //     if (this.answer.answerId === this.option.optionId) {
@@ -202,13 +201,13 @@ export class StatistcsAnswerModalComponent implements OnInit {
     //       if (this.charactOfOption.includes('选项' + this.singleNumberOfOption)) {
     //         this.countNumber = this.countOfOption[this.question.optionList.indexOf(this.option)];
     //         this.countNumber++;
-    //         log('countNumber::' + this.countNumber);
+    //         console.log('countNumber::' + this.countNumber);
     //         this.countOfOption[this.question.optionList.indexOf(this.option)] = this.countNumber;
-    //         log('111numOfOption::' + this.countOfOption);
+    //         console.log('111numOfOption::' + this.countOfOption);
     //       } else {
     //         this.countOfOption[this.question.optionList.indexOf(this.option)] = 1;
     //         this.charactOfOption.push('选项' + this.singleNumberOfOption);
-    //         log('222numOfOption::' + this.countOfOption);
+    //         console.log('222numOfOption::' + this.countOfOption);
     //       }
     //     }
     //   }
@@ -268,12 +267,12 @@ export class StatistcsAnswerModalComponent implements OnInit {
    * @returns void
    */
   handleOk(): void {
-    log('显示答题情况__确定');
+    console.log('显示答题情况__确定');
     this.isVisible = false;
   }
   handleCancel(): void {
     /* 点击取消响应函数 */
-    log('编辑试题__取消');
+    console.log('编辑试题__取消');
     this.isVisible = false;
   }
 }

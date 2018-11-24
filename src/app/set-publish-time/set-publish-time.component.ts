@@ -1,7 +1,6 @@
 import {Component, forwardRef, Host, Inject, OnInit, ViewChild} from '@angular/core';
 import {Publish} from '../services/publish';
 import {QuestionTestComponent} from '../question-test/question-test.component';
-import {log} from 'util';
 import {Question} from '../services/question';
 import {PublishService} from '../services/publish.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
@@ -50,7 +49,7 @@ export class SetPublishTimeComponent implements OnInit {
   }
   setPublish(question): void {
     // 设置时间限制
-    log('发布试题的ID' + question.questionId.toString());
+    console.log('发布试题的ID' + question.questionId.toString());
     this.question = question;
     this.isVisible = true;
   }
@@ -90,8 +89,8 @@ export class SetPublishTimeComponent implements OnInit {
          // window.open('toPublishPage?questionId=' + this.question.questionId + '&publishId=' + publish.publishId);
       }
       );
-      log( '总时间' + this.totaltime );
-      log( '结束时间' + this.endTimes);
+      console.log( '总时间' + this.totaltime );
+      console.log( '结束时间' + this.endTimes);
       // 获取Publish
     } else {
         this.showMessage('error', '输入时间不符合，请重新输入');

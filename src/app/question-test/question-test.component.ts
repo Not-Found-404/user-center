@@ -1,7 +1,6 @@
 import {Component, forwardRef, Host, Inject, OnInit, ViewChild} from '@angular/core';
 import {Question, QuestionList} from '../services/question';
 import {Nf4AppComponent} from '../nf4-app.component';
-import {log} from 'util';
 import {QuestionService} from '../services/question.service';
 import {NzMessageService, NzModalService} from 'ng-zorro-antd';
 import {SetPublishTimeComponent} from '../set-publish-time/set-publish-time.component';
@@ -76,7 +75,6 @@ export class QuestionTestComponent implements OnInit {
      */
   getAllQuestions(userId: number): void {
     if (userId != null) {
-      // log('获取用户的所有试题' + userId);
       this.questionService.findAllQuestions().subscribe((questionList: Question[]) => {
         this.questionList = questionList;
       });
@@ -104,7 +102,7 @@ export class QuestionTestComponent implements OnInit {
      * @returns void
      */
   publishQuestion(question: Question): void {
-    log('调用发布问题');
+    console.log('调用发布问题');
     this.appSetPublishTimeModal.setPublish(question);
 }
   /**
@@ -113,7 +111,6 @@ export class QuestionTestComponent implements OnInit {
      * @returns void
      */
   addNewQuestion(): void {
-    // log('创建新的试题');
     this.questionService.addNewQuestion(this.question).subscribe(__ => {
       // 显示创建成功信息
       this.getAllQuestions(this.user.userId);
@@ -163,7 +160,6 @@ export class QuestionTestComponent implements OnInit {
   deleteQuestion(questionId: number): void {
     /*删除试题*/
     /* 提示信息_删除试题id */
-    // log('删除试题ID:' + questionId.toString());
     /* 删除试题业务逻辑 */
     this.questionService.deleteQuestion(questionId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {

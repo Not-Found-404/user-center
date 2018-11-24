@@ -102,7 +102,6 @@ export class UsercenterComponent implements OnInit {
   deleteFolder(folderId: number): void {
     /* 删除文件夹函数 */
     /* 提示信息_删除文件id */
-    // log('删除文件夹ID:' + folderId.toString());
     /* 删除文件夹业务逻辑 */
     this.folderService.deleteFolder(folderId).subscribe((data: Result) => {
       if (data.code === 200) {
@@ -119,7 +118,6 @@ export class UsercenterComponent implements OnInit {
   slideMenuPlay(slideId: number): void {
     /* 播放幻灯片逻辑 */
     // window.open('toPlayPage?slideId=' + slideId);
-    // log('播放幻灯片ID:' + slideId.toString());
     this.showAttendanceConfirm(slideId);
   }
   // 显示是否进行考勤的弹出框
@@ -148,7 +146,6 @@ export class UsercenterComponent implements OnInit {
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
-    // log('删除幻灯片ID:' + slideId.toString());
     /* 删除幻灯片业务逻辑 */
     this.slideService.delelteSlideInfo(slideId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {
@@ -234,7 +231,6 @@ export class UsercenterComponent implements OnInit {
 
   folderMove(folder: Folder): void {
     /*在log中输出，文件夹移动*/
-    // log('移动文件:' + folder.folderId.toString());
     // 文件夾移动
     this.appMoveFileModal.showModal(folder, 1);
   }
@@ -277,7 +273,6 @@ export class UsercenterComponent implements OnInit {
 
   editSlide(slideId: number): void {
     /* 编辑幻灯片函数 */
-    // log('编辑幻灯片id:' + slideId.toString());
     let isMobileDevice = false;  // 判断设备是否为移动设备
     // 获取浏览器UA信息，判断设备类型
     const userAgent = navigator.userAgent;

@@ -11,7 +11,6 @@ import {UsercenterComponent} from './usercenter/usercenter.component'; /*用户�
 import {InputModalComponent} from './input-modal/input-modal.component';
 import {Slide} from './services/slide';
 import {Result} from './services/result';
-import {log} from 'util';
 
 /** Test Environment 测试环境__数据传输 **/
 import {DATA} from './mockData';
@@ -92,7 +91,6 @@ export class Nf4AppComponent implements OnInit {
   deleteFolder(folderId: number): void {
     /* 删除文件夹函数 */
     /* 提示信息_删除文件id */
-    log('删除文件夹ID:' + folderId.toString());
     /* 删除文件夹业务逻辑 */
     this.folderService.deleteFolder(folderId).subscribe((data: Result) => {
       if (data.code === 200) {
@@ -105,7 +103,6 @@ export class Nf4AppComponent implements OnInit {
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
-    log('删除幻灯片ID:' + slideId.toString());
     /* 删除幻灯片业务逻辑 */
     this.slideService.delelteSlideInfo(slideId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {

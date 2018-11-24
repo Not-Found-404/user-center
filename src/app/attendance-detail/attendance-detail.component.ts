@@ -3,7 +3,6 @@ import {Nf4AppComponent} from '../nf4-app.component';
 import {AttendanceService} from '../services/attendance.service';
 import {ViewStatistics} from '../services/attendance';
 import {ATTENANCEDETAIL} from '../mockData';
-import {log} from 'util';
 import {ActivatedRoute} from '@angular/router';
 
 @Component({
@@ -35,7 +34,7 @@ export class AttendanceDetailComponent implements OnInit {
     this.parentComponent.triggerToggle();
   }
   getAttendanceListDetail(): void {
-    log('获取考勤具体记录');
+    console.log('获取考勤具体记录');
     const id = +this.route.snapshot.paramMap.get('id');
      this.attendanceService.viewList(id).subscribe((attendanceDetailDataSet: ViewStatistics[]) => {
        this.attendanceDetailDataSet = attendanceDetailDataSet;
