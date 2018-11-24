@@ -17,6 +17,8 @@ export class AttendanceDetailComponent implements OnInit {
   parentComponent: Nf4AppComponent;
   // 详细的考勤记录
   attendanceDetailDataSet: ViewStatistics[];
+  // 考勤记录 id 信息
+  attendanceId: number;
   constructor(private attendanceService: AttendanceService,
               private route: ActivatedRoute,
               @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent // 获取父组件
@@ -29,6 +31,7 @@ export class AttendanceDetailComponent implements OnInit {
     /*模拟数据*/
     // this.attendanceDetailDataSet = ATTENANCEDETAIL;
     // 模拟数据
+    this.attendanceId = Number(this.route.snapshot.paramMap.get('id'));
   }
   // 侧边栏切换函数，通过调用父组件的侧边栏切换函数
   triggerToggle(): void {

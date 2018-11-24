@@ -29,7 +29,7 @@ export class QuestionService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.questionUrl = 'question/';
+    this.questionUrl = 'api/question/';
   }
   /**
    * 获得当前登录用户的所有试题，与后端路径写法一致

@@ -29,7 +29,7 @@ export class PublishService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.publishUrl = 'publish/';
+    this.publishUrl = 'api/publish/';
   }
 
   /**
