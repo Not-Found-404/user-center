@@ -61,6 +61,7 @@
 }
 
 .histogram{
+  /* 图表信息显示位置 */
   width: 100%;
-  height: 400px;
+  height: 100%;
 }

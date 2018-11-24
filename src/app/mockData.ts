@@ -1,9 +1,9 @@
 /* 构造模拟数据 */
-import {Folder} from './services/folder';
-import {Question, QuestionList} from './services/question';
-import {Option} from './services/option';
-import {Publish} from './services/publish';
-import {Attendance, AttendanceListResponse, ViewStatistics} from './services/attendance';
+import { Folder } from './services/folder';
+import { Question, QuestionList } from './services/question';
+import { Option } from './services/option';
+import { Publish } from './services/publish';
+import { Attendance, AttendanceListResponse, ViewStatistics } from './services/attendance';
 export const QUESTION: Question[] = [
   {
     userId: 1,
@@ -216,6 +216,7 @@ export const DATA: Folder = {
     }
   ]
 };
+
 export const ATTENANCE: AttendanceListResponse[] = [
   {
     beginTime: '2018-11-11 22:22:22',
@@ -229,20 +230,70 @@ export const ATTENANCE: AttendanceListResponse[] = [
     slideName: '这是我的测试案例2',
     id: 11111
   }
-]
+];
+
 export const ATTENANCEDETAIL: ViewStatistics[] = [
   {
-    id: 11,
-    identify: 'hahah',
-    totalTime: 54578,
+    id: 1,
+    identify: '乐正晨曦',
+    totalTime: 2400000,
     exitTimes: 24,
     attendanceId: 1111
   },
   {
-    id: 11,
-    identify: 'hahah',
-    totalTime: 54578,
-    exitTimes: 2,
+    id: 2,
+    identify: '纳莹白',
+    totalTime: 1260000,
+    exitTimes: 43,
     attendanceId: 2222
+  },
+  {
+    id: 3,
+    identify: '孔乙己',
+    totalTime: 1404000,
+    exitTimes: 9,
+    attendanceId: 1111
+  },
+  {
+    id: 4,
+    identify: '切·格瓦拉',
+    totalTime: 1004000,
+    exitTimes: 25,
+    attendanceId: 1111
+  },
+  {
+    id: 5,
+    identify: '杨一禾',
+    totalTime: 1068160,
+    exitTimes: 36,
+    attendanceId: 1111
+  },
+  {
+    id: 6,
+    identify: '奕琇芬',
+    totalTime: 1353170,
+    exitTimes: 5,
+    attendanceId: 1111
+  },
+  {
+    id: 7,
+    identify: '图门安柏',
+    totalTime: 1953170,
+    exitTimes: 5,
+    attendanceId: 1111
+  },
+  {
+    id: 8,
+    identify: '叶夜香',
+    totalTime: 1865654,
+    exitTimes: 5,
+    attendanceId: 1111
+  },
+  {
+    id: 9,
+    identify: '巴勃罗.山迪亚哥',
+    totalTime: 1865654,
+    exitTimes: 5,
+    attendanceId: 1111
   }
-]
+];

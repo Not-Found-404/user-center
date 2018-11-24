@@ -1,22 +1,19 @@
-import {Component, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {NzMenuItemDirective, NzDropdownContextComponent, NzDropdownService, NzModalService, NzIconService} from '../../node_modules/ng-zorro-antd';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { NzMenuItemDirective, NzDropdownContextComponent } from '../../node_modules/ng-zorro-antd';
+import { NzDropdownService, NzModalService, NzIconService } from '../../node_modules/ng-zorro-antd';
 import { NzMessageService } from 'ng-zorro-antd';
-import {User} from './services/user';
-import {Folder} from './services/folder';
-import {UserService} from './services/user.service';
-import {SlideService} from './services/slide.service';
-import {FolderService} from './services/folder.service';
-import {MoveFileModalComponent} from './move-file-modal/move-file-modal.component'; /*移动文件的component*/
-import {UsercenterComponent} from './usercenter/usercenter.component'; /*用户中心子组件*/
-import {InputModalComponent} from './input-modal/input-modal.component';
-import {Slide} from './services/slide';
-import {Result} from './services/result';
-import {log} from 'util';
+import { User } from './services/user';
+import { Folder } from './services/folder';
+import { UserService } from './services/user.service';
+import { SlideService } from './services/slide.service';
+import { FolderService } from './services/folder.service';
+import { MoveFileModalComponent } from './move-file-modal/move-file-modal.component'; /*移动文件的component*/
+import { InputModalComponent } from './input-modal/input-modal.component';
+import { Slide } from './services/slide';
+import { Result } from './services/result';
 
 /** Test Environment 测试环境__数据传输 **/
-import {DATA} from './mockData';
-import { from } from 'rxjs';
-
+import { DATA } from './mockData';
 /** Test Environment end 测试环境__数据传输-结束 **/
 
 @Component({
@@ -49,12 +46,12 @@ export class Nf4AppComponent implements OnInit {
     this.getLoginUser();
   }
   constructor(private nzDropdownService: NzDropdownService,
-              private userService: UserService,
-              private slideService: SlideService,
-              private folderService: FolderService,
-              private messageService: NzMessageService,   // 全局消息服务-ant
-              private modalService: NzModalService,       // 对话框服务-ant
-              private nzIconService: NzIconService        // 蚂蚁框架图标服务
+    private userService: UserService,
+    private slideService: SlideService,
+    private folderService: FolderService,
+    private messageService: NzMessageService,   // 全局消息服务-ant
+    private modalService: NzModalService,       // 对话框服务-ant
+    private nzIconService: NzIconService        // 蚂蚁框架图标服务
   ) {
     this.user = {
       username: '新用户',
@@ -92,7 +89,7 @@ export class Nf4AppComponent implements OnInit {
   deleteFolder(folderId: number): void {
     /* 删除文件夹函数 */
     /* 提示信息_删除文件id */
-    log('删除文件夹ID:' + folderId.toString());
+    console.log('删除文件夹ID:' + folderId.toString());
     /* 删除文件夹业务逻辑 */
     this.folderService.deleteFolder(folderId).subscribe((data: Result) => {
       if (data.code === 200) {
@@ -105,7 +102,7 @@ export class Nf4AppComponent implements OnInit {
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
-    log('删除幻灯片ID:' + slideId.toString());
+    console.log('删除幻灯片ID:' + slideId.toString());
     /* 删除幻灯片业务逻辑 */
     this.slideService.delelteSlideInfo(slideId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {
@@ -142,7 +139,7 @@ export class Nf4AppComponent implements OnInit {
     window.location.href = 'toAvatorEditpage';
   }
   // 按照名称搜索
-  searchFile(event: any): void  {
+  searchFile(event: any): void {
     if (event.keyCode === 13) {
       if (event.target.value === '') {
         return;
@@ -185,13 +182,13 @@ export class Nf4AppComponent implements OnInit {
   showDeleteFolderConfirm(folderId: number): void {
     /* 删除文件夹确认对话框 */
     this.modalService.confirm({
-      nzTitle     : '您确定要删除这个文件夹？',
-      nzContent   : '<b style="color: red;">文件夹中的文件也将一起删除</b>',
-      nzOkText    : '删除',
-      nzOkType    : 'danger',
-      nzOnOk      : () => this.deleteFolder(folderId), // 确认操作，回调删除文件夹函数
+      nzTitle: '您确定要删除这个文件夹？',
+      nzContent: '<b style="color: red;">文件夹中的文件也将一起删除</b>',
+      nzOkText: '删除',
+      nzOkType: 'danger',
+      nzOnOk: () => this.deleteFolder(folderId), // 确认操作，回调删除文件夹函数
       nzCancelText: '取消',
-      nzOnCancel  : () => console.log('删除对话框_取消')
+      nzOnCancel: () => console.log('删除对话框_取消')
     });
   }
 
