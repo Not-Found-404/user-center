@@ -33,7 +33,7 @@ export class UsercenterComponent implements OnInit {
   attendanceId: number;
 
   // 得到父组件，调用更新
-  parentComponent:  Nf4AppComponent;
+  parentComponent: Nf4AppComponent;
   /*属性装饰器，声明对子组件元素的实例引用*/
   @ViewChild('appMoveFileModal')
   appMoveFileModal: MoveFileModalComponent;
@@ -44,6 +44,7 @@ export class UsercenterComponent implements OnInit {
   ngOnInit() {
     this.getLoginUser();
   }
+
   constructor(private nzDropdownService: NzDropdownService,
               private userService: UserService,
               private slideService: SlideService,
@@ -51,7 +52,7 @@ export class UsercenterComponent implements OnInit {
               private attendanceService: AttendanceService,
               private messageService: NzMessageService,   // 全局消息服务-ant
               private modalService: NzModalService,        // 对话框服务-ant
-  @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent
+              @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent
   ) {
     this.parentComponent = nf4AppComponent;
     this.user = {
@@ -120,21 +121,22 @@ export class UsercenterComponent implements OnInit {
     // window.open('toPlayPage?slideId=' + slideId);
     this.showAttendanceConfirm(slideId);
   }
+
   // 显示是否进行考勤的弹出框
   showAttendanceConfirm(slideId: number): void {
     this.modalService.confirm({
-      nzTitle     : '您是否要在播放幻灯片时进行考勤？',
-      nzContent   : '',
-      nzOkText    : '确定',
-      nzOkType    : 'info',
-      nzOnOk      : () => {
-        this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
-          this.attendanceId = attendanceId;
-        });
-        window.open('toPlayPage?slideId=' + slideId + '&attendanceId=' + this.attendanceId); // 确认
+      nzTitle: '您是否要在播放幻灯片时进行考勤？',
+      nzContent: '',
+      nzOkText: '确定',
+      nzOkType: 'info',
+      nzOnOk: () => {
+        // this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
+        //   this.attendanceId = attendanceId;
+        //   })
+        window.open('toPlayPage?slideId=' + slideId + '&isAttendance=true&control=true'); // 确认
       },
       nzCancelText: '取消',
-      nzOnCancel  : () => window.open('toPlayPage?slideId=' + slideId)
+      nzOnCancel: () => window.open('toPlayPage?slideId=' + slideId + '&control=true')
     });
   }
 
@@ -143,6 +145,7 @@ export class UsercenterComponent implements OnInit {
     /* 显示删除确认对话框 */
     this.showDeleteSlideConfirm(slideId);
   }
+
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
@@ -207,13 +210,14 @@ export class UsercenterComponent implements OnInit {
     // 演讲点击事件
     this.showAttendancePlay(slideId);
   }
+
   showAttendancePlay(slideId: number): void {
     this.modalService.confirm({
-      nzTitle     : '您是否要在播放幻灯片时进行考勤？',
-      nzContent   : '',
-      nzOkText    : '确定',
-      nzOkType    : 'info',
-      nzOnOk      : () =>  {
+      nzTitle: '您是否要在播放幻灯片时进行考勤？',
+      nzContent: '',
+      nzOkText: '确定',
+      nzOkType: 'info',
+      nzOnOk: () => {
         this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
           this.attendanceId = attendanceId;
           console.log('创建考勤记录');
@@ -221,9 +225,10 @@ export class UsercenterComponent implements OnInit {
         window.open('toPlayPage?slideId=' + slideId + '&attendanceId=' + this.attendanceId + '&control=true'); // 确认
       },
       nzCancelText: '取消',
-      nzOnCancel  : () => window.open('toPlayPage?slideId=' + slideId + '&control=true')
+      nzOnCancel: () => window.open('toPlayPage?slideId=' + slideId + '&control=true')
     });
   }
+
   // 幻灯片移动
   slideMove(slide: Slide) {
     this.appMoveFileModal.showModal(slide, 2);
@@ -234,18 +239,19 @@ export class UsercenterComponent implements OnInit {
     // 文件夾移动
     this.appMoveFileModal.showModal(folder, 1);
   }
+
   // 编辑文件夹名称
   eidtFolderName(folder: Folder): void {
     this.appInputModal.showModal(folder, 1);
   }
 
   // 编辑幻灯片名称
-  eidtSlideName(slide: Slide): void  {
+  eidtSlideName(slide: Slide): void {
     this.appInputModal.showModal(slide, 2);
   }
 
   // 按照名称搜索
-  searchFile(event: any): void  {
+  searchFile(event: any): void {
     if (event.keyCode === 13) {
       if (event.target.value === '') {
         return;
@@ -261,6 +267,7 @@ export class UsercenterComponent implements OnInit {
       }
     }
   }
+
   // 按照名称搜索幻灯片
   searchSlideByName(slide: Slide[]) {
     this.folder.slideVos = slide;
@@ -310,26 +317,26 @@ export class UsercenterComponent implements OnInit {
   showDeleteSlideConfirm(slideId: number): void {
     /* 删除幻灯片确认对话框 */
     this.modalService.confirm({
-      nzTitle     : '您确定要删除这个幻灯片？',
-      nzContent   : '<b style="color: red;">删除文件将不可恢复</b>',
-      nzOkText    : '删除',
-      nzOkType    : 'danger',
-      nzOnOk      : () => this.deleteSlide(slideId), // 确认操作，回调删除幻灯片函数
+      nzTitle: '您确定要删除这个幻灯片？',
+      nzContent: '<b style="color: red;">删除文件将不可恢复</b>',
+      nzOkText: '删除',
+      nzOkType: 'danger',
+      nzOnOk: () => this.deleteSlide(slideId), // 确认操作，回调删除幻灯片函数
       nzCancelText: '取消',
-      nzOnCancel  : () => console.log('删除对话框_取消')
+      nzOnCancel: () => console.log('删除对话框_取消')
     });
   }
 
   showDeleteFolderConfirm(folderId: number): void {
     /* 删除文件夹确认对话框 */
     this.modalService.confirm({
-      nzTitle     : '您确定要删除这个文件夹？',
-      nzContent   : '<b style="color: red;">文件夹中的文件也将一起删除</b>',
-      nzOkText    : '删除',
-      nzOkType    : 'danger',
-      nzOnOk      : () => this.deleteFolder(folderId), // 确认操作，回调删除文件夹函数
+      nzTitle: '您确定要删除这个文件夹？',
+      nzContent: '<b style="color: red;">文件夹中的文件也将一起删除</b>',
+      nzOkText: '删除',
+      nzOkType: 'danger',
+      nzOnOk: () => this.deleteFolder(folderId), // 确认操作，回调删除文件夹函数
       nzCancelText: '取消',
-      nzOnCancel  : () => console.log('删除对话框_取消')
+      nzOnCancel: () => console.log('删除对话框_取消')
     });
 
   }
