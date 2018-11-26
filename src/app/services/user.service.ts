@@ -80,7 +80,6 @@ export class UserService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.userUrl = 'api/user/';
-    // this.userUrl = 'http://localhost:80/user/';
+    this.userUrl = 'user/';
   }
 }
