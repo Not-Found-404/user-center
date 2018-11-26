@@ -39,11 +39,9 @@ const appRoutes: Routes = [
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'question-test', component: QuestionTestComponent },
   { path: 'attendance', component: AttendanceComponent },
-  { path: 'duration-graph', component: DurationGraphComponent },
-  { path: 'time-graph', component: TimeGraphComponent },
   { path: 'attendanceDetail/:id', component: AttendanceDetailComponent },
   { path: 'durationGraph/:id', component: DurationGraphComponent },
-  { path: 'timeGraph/:id', component: DurationGraphComponent },
+  { path: 'timeGraph/:id', component: TimeGraphComponent },
   { path: '', redirectTo: '/usercenter', pathMatch: 'full' } // 添加默认路由
 ];
 registerLocaleData(zh);

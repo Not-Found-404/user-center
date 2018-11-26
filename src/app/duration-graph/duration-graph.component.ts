@@ -6,7 +6,7 @@
 import { Component, OnInit, Host, Inject, forwardRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Nf4AppComponent } from '../nf4-app.component';
-/*添加饼状图*/
+/* echeats 图表服务 */
 import { NgxEchartsModule } from 'ngx-echarts';
 /* 考勤信息查询服务 */
 import { AttendanceService } from '../services/attendance.service';
@@ -26,22 +26,29 @@ export class DurationGraphComponent implements OnInit {
   parentComponent: Nf4AppComponent;
   // 持续时间柱状图
   durationHistogram: NgxEchartsModule;
-  // 图标数据信息
+  // 图表数据信息
   public durationHistogramOption: any;
   // 考勤记录信息
   viewStatistics: ViewStatistics[] = [];
+  // 考勤记录 id 信息
+  attendanceId: number;
 
+  // 构造函数
   constructor(
     private attendanceService: AttendanceService,  // 考勤信息查询服务
     private route: ActivatedRoute,
+    // 注入父组件，以便调用父组件方法
     @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent // 获取父组件
   ) {
     this.parentComponent = nf4AppComponent;
   }
 
+  // 初始化函数
   ngOnInit() {
     // 获取考勤信息
     this.getAttendanceData();
+    // 获取当前考勤信息 id
+    this.attendanceId = Number(this.route.snapshot.paramMap.get('id'));
   }
 
   // 侧边栏切换函数，通过调用父组件的侧边栏切换函数
@@ -49,7 +56,11 @@ export class DurationGraphComponent implements OnInit {
     this.parentComponent.triggerToggle();
   }
 
-  // 获取考勤信息函数
+  /**
+   * @author BillowsTao
+   * @param 考勤数据数组
+   * @description 获取考勤信息函数
+   */
   getAttendanceData(): void {
     // 获取考勤记录 id
     const viewStatisticsId = Number(this.route.snapshot.paramMap.get('id'));
@@ -136,9 +147,9 @@ export class DurationGraphComponent implements OnInit {
             type: 'slider',
             yAxisIndex: [0],
             filterMode: 'filter',
-            /* 过滤数据索引为0-6 */
+            /* 过滤数据索引为0-7 */
             startValue: 0,
-            endValue: 6
+            endValue: 7
           }
         ]
       };
@@ -151,6 +162,7 @@ export class DurationGraphComponent implements OnInit {
    * @author BillowsTao
    * @param 考勤数据数组
    * @description 时间获取函数
+   * @returns 时间数组
    */
   processTimeData(viewStatistics: ViewStatistics[]): number[] {
     const timeData = [];  // 时间数据
@@ -166,15 +178,16 @@ export class DurationGraphComponent implements OnInit {
    * @author BillowsTao
    * @param 考勤数据数组
    * @description 用户名获取函数
+   * @returns 姓名数组
    */
   processNameData(viewStatistics: ViewStatistics[]): string[] {
     const nameData = [];
     viewStatistics.forEach(element => {
-      // 进行时间处理，将秒转换为分钟
+      // 进行姓名处理，产生姓名数组
       nameData.push(element.identify);
     });
     // console.log('姓名', nameData);
-    return nameData; // 返回时间数据
+    return nameData; // 返回姓名数据
   }
 
 }

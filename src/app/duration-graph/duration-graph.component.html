@@ -10,7 +10,34 @@
         nz-tooltip nzTitle="切换侧边栏">
         <i nz-icon type="bars" theme="outline"></i>
       </button>
+
+      <!-- 返回考勤路由超链接 -->
+      <a class="controlPanel-link" routerLink="/attendance" nz-tooltip nzTitle="返回考勤界面">
+        <i nz-icon type="rollback" theme="outline"></i>
+        <span class="controlPanel-link__text">返回考勤</span>
+      </a>
+
     </div>
+
+  </div>
+
+  <!-- 控制面板-按钮组 -->
+  <div class="controlPanel__button-group">
+    <a class="controlPanel-link" routerLink="/attendanceDetail/{{attendanceId}}" nz-tooltip nzTitle="表格信息">
+      <i nz-icon type="table" theme="outline"></i>
+      <span class="controlPanel-link__text-function">表格信息</span>
+    </a>
+
+    <a class="controlPanel-link" routerLink="/durationGraph/{{attendanceId}}" nz-tooltip nzTitle="时间统计图">
+      <i nz-icon type="bar-chart" theme="outline"></i>
+      <span class="controlPanel-link__text-function">时间统计</span>
+    </a>
+
+    <a class="controlPanel-link" routerLink="/timeGraph/{{attendanceId}}" nz-tooltip nzTitle="离开次数统计图">
+      <i nz-icon type="area-chart" theme="outline"></i>
+      <span class="controlPanel-link__text-function">离开次数统计</span>
+    </a>
+
   </div>
 
   <!-- 考勤界面-工作区 -->

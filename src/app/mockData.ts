@@ -251,7 +251,7 @@ export const ATTENANCEDETAIL: ViewStatistics[] = [
     id: 3,
     identify: '孔乙己',
     totalTime: 1404000,
-    exitTimes: 9,
+    exitTimes: 4,
     attendanceId: 1111
   },
   {
@@ -272,28 +272,28 @@ export const ATTENANCEDETAIL: ViewStatistics[] = [
     id: 6,
     identify: '奕琇芬',
     totalTime: 1353170,
-    exitTimes: 5,
+    exitTimes: 13,
     attendanceId: 1111
   },
   {
     id: 7,
     identify: '图门安柏',
     totalTime: 1953170,
-    exitTimes: 5,
+    exitTimes: 31,
     attendanceId: 1111
   },
   {
     id: 8,
     identify: '叶夜香',
     totalTime: 1865654,
-    exitTimes: 5,
+    exitTimes: 22,
     attendanceId: 1111
   },
   {
     id: 9,
     identify: '巴勃罗.山迪亚哥',
     totalTime: 1865654,
-    exitTimes: 5,
+    exitTimes: 9,
     attendanceId: 1111
   }
 ];

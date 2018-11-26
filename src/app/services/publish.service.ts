@@ -4,7 +4,6 @@ import {NzTreeNode} from 'ng-zorro-antd';
 import {Observable} from 'rxjs';
 import {Result} from './result';
 import {Question, QuestionList} from './question';
-import {log} from 'util';
 import {Publish} from './publish';
 
 const httpOptions = {
@@ -38,7 +37,7 @@ export class PublishService {
    * @returns void
    */
   setPublish(publish: Publish): Observable<Publish> {
-    log('questionService：设置发布的试题的参数,时间' + publish.time.toLocaleString());
+    // console.log('questionService：设置发布的试题的参数,时间' + publish.time.toLocaleString());
     return this.http.post<Publish>(this.publishUrl + `addPublish`, publish, httpOptions);
   }
 
@@ -48,7 +47,7 @@ export class PublishService {
    * @returns {Observable<Question>}
    */
   getPublishByQuuestionId(questionId: number): Observable<Publish[]> {
-    log('service:获取数据库中的发布信息');
+    // console.log('service:获取数据库中的发布信息');
     return this.http.post<Publish[]>(this.publishUrl + `fetchPublishById?questionId=` + questionId, httpOptions);
   }
 }

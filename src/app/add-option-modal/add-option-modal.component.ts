@@ -1,6 +1,5 @@
 import {Component, forwardRef, Host, Inject, OnInit} from '@angular/core';
 import {OptionService} from '../services/option.service';
-import {log} from 'util';
 import {QuestionTestComponent} from '../question-test/question-test.component';
 import {QuestionEditModalComponent} from '../question-edit-modal/question-edit-modal.component';
 import {NzMessageService} from 'ng-zorro-antd';
@@ -42,7 +41,7 @@ export class AddOptionModalComponent implements OnInit {
    * @returns void
    */
   handleOk(): void {
-    log('添加选项__确定');
+    // console.log('添加选项__确定');
     this.optionService.addNewOption({
       questionId: this.questionId,
       content: this.content,
@@ -54,7 +53,7 @@ export class AddOptionModalComponent implements OnInit {
   }
   handleCancel(): void {
     /* 点击取消响应函数 */
-    log('添加选项__取消');
+    // console.log('添加选项__取消');
     this.isVisible = false;
   }
 

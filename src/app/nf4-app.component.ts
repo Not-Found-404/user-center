@@ -89,7 +89,7 @@ export class Nf4AppComponent implements OnInit {
   deleteFolder(folderId: number): void {
     /* 删除文件夹函数 */
     /* 提示信息_删除文件id */
-    console.log('删除文件夹ID:' + folderId.toString());
+    // console.log('删除文件夹ID:' + folderId.toString());
     /* 删除文件夹业务逻辑 */
     this.folderService.deleteFolder(folderId).subscribe((data: Result) => {
       if (data.code === 200) {
@@ -102,7 +102,7 @@ export class Nf4AppComponent implements OnInit {
   deleteSlide(slideId: number): void {
     /* 删除幻灯片函数 */
     /* 提示信息_删除幻灯片id */
-    console.log('删除幻灯片ID:' + slideId.toString());
+    // console.log('删除幻灯片ID:' + slideId.toString());
     /* 删除幻灯片业务逻辑 */
     this.slideService.delelteSlideInfo(slideId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {
@@ -188,7 +188,7 @@ export class Nf4AppComponent implements OnInit {
       nzOkType: 'danger',
       nzOnOk: () => this.deleteFolder(folderId), // 确认操作，回调删除文件夹函数
       nzCancelText: '取消',
-      nzOnCancel: () => console.log('删除对话框_取消')
+      nzOnCancel: () => {} /* console.log('删除对话框_取消') */
     });
   }
 

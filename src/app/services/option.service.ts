@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Result} from './result';
-import {log} from 'util';
 import {Option} from './option';
 
 const httpOptions = {
@@ -34,7 +33,7 @@ export class OptionService {
    * @returns {Observable<option[]>}
    */
   findAlloptions(): Observable<Option[]> {
-    log('获取当前登录用户的所有选项');
+    // console.log('获取当前登录用户的所有选项');
     return this.http.get<Option[]>(this.optionUrl + `findAllOptions`, httpOptions);
   }
   /**
@@ -43,7 +42,7 @@ export class OptionService {
    * @returns {Observable<Option>}
    */
   getOptionByOptionId(optionId: number): Observable<Option> {
-    log('service:获取数据库中的选项信息' + optionId);
+    // console.log('service:获取数据库中的选项信息' + optionId);
     return this.http.get<Option>(this.optionUrl + `fetchOptionById?optionId=` + optionId, httpOptions);
   }
   /**
@@ -52,7 +51,7 @@ export class OptionService {
    * @returns {Observable<Result>}
    */
   deleteOption(optionid: number): Observable<Result> {
-    log('service:删除选项');
+    // console.log('service:删除选项');
     return this.http.post<Result>(this.optionUrl + `deleteOption`, optionid, httpOptions);
   }
   /**
@@ -61,7 +60,7 @@ export class OptionService {
      * @returns {Observable<Result>}
      */
   modifyOption(option: Option): Observable<Result> {
-    log('service:修改选项');
+    // console.log('service:修改选项');
     return this.http.post<Result>(this.optionUrl + `modifyQeustion`, option, httpOptions);
   }
   /**
@@ -70,7 +69,7 @@ export class OptionService {
      * @returns {Observable<Result>}
      */
   addNewOption(option: Option): Observable<Option> {
-    log('service:添加选项');
+    // console.log('service:添加选项');
     return this.http.post<Option>(this.optionUrl + `addNewOption`, option, httpOptions);
   }
 }
