@@ -2,8 +2,7 @@ import { Component, forwardRef, Host, Inject, OnInit } from '@angular/core';
 import { Nf4AppComponent } from '../nf4-app.component';
 import {AttendanceService} from '../services/attendance.service';
 import {AttendanceListResponse} from '../services/attendance';
-import {log} from 'util';
-import {ATTENANCE} from '../mockData';
+// import {ATTENANCE} from '../mockData';
 
 @Component({
   selector: 'app-attendance',
@@ -39,7 +38,7 @@ export class AttendanceComponent implements OnInit {
     this.parentComponent.triggerToggle();
   }
   getAttendanceList(): void {
-    console.log('获取考勤记录');
+    // console.log('获取考勤记录');
     this.attendanceService.findAttendanceList().subscribe((attendanceDataSet: AttendanceListResponse[]) => {
       this.attendanceDataSet = attendanceDataSet;
     });

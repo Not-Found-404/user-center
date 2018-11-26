@@ -3,7 +3,6 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {NzTreeNode} from 'ng-zorro-antd';
 import {Observable} from 'rxjs';
 import {Result} from './result';
-import {log} from 'util';
 import {Answer} from './answer';
 import {Publish} from './publish';
 
@@ -29,10 +28,10 @@ export class AnswerService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.answerUrl = 'answer/';
+    this.answerUrl = 'api/answer/';
   }
   findAllAnswers(): Observable<Answer[]> {
-    log('获取当前登录用户的所有试题');
+    // console.log('获取当前登录用户的所有试题');
     return this.http.get<Answer[]>(this.answerUrl + `findAllAnswers`, httpOptions);
   }
   /**
@@ -41,7 +40,7 @@ export class AnswerService {
    * @returns {Observable<Answer>}
    */
   getAnswerById(publish: Publish): Observable<Answer[]> {
-    log('service:获取数据库中的答题情况信息' + publish.publishId);
+    // console.log('service:获取数据库中的答题情况信息' + publish.publishId);
     return this.http.post<Answer[]>(this.answerUrl + `fetchAnswerByPublishId`, publish, httpOptions);
   }
 }

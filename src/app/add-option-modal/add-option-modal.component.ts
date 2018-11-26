@@ -41,7 +41,7 @@ export class AddOptionModalComponent implements OnInit {
    * @returns void
    */
   handleOk(): void {
-    console.log('添加选项__确定');
+    // console.log('添加选项__确定');
     this.optionService.addNewOption({
       questionId: this.questionId,
       content: this.content,
@@ -53,7 +53,7 @@ export class AddOptionModalComponent implements OnInit {
   }
   handleCancel(): void {
     /* 点击取消响应函数 */
-    console.log('添加选项__取消');
+    // console.log('添加选项__取消');
     this.isVisible = false;
   }
 

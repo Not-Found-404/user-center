@@ -1,7 +1,7 @@
 /**
  * author:BillowsTao
- * date:2018.11.24
- * describe:Duration graph of watch record.
+ * date:2018.11.25
+ * describe:Time graph of time record.
  */
 import { Component, OnInit, Host, Inject, forwardRef } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
@@ -17,17 +17,17 @@ import { ViewStatistics } from '../services/attendance';
 /* --模拟数据-- end ---- */
 
 @Component({
-  selector: 'app-duration-graph',
-  templateUrl: './duration-graph.component.html',
-  styleUrls: ['./duration-graph.component.css']
+  selector: 'app-time-graph',
+  templateUrl: './time-graph.component.html',
+  styleUrls: ['./time-graph.component.css']
 })
-export class DurationGraphComponent implements OnInit {
+export class TimeGraphComponent implements OnInit {
   // 得到父组件，调用更新
   parentComponent: Nf4AppComponent;
   // 持续时间柱状图
-  durationHistogram: NgxEchartsModule;
+  timeHistogram: NgxEchartsModule;
   // 图表数据信息
-  public durationHistogramOption: any;
+  public timeHistogramOption: any;
   // 考勤记录信息
   viewStatistics: ViewStatistics[] = [];
   // 考勤记录 id 信息
@@ -64,16 +64,17 @@ export class DurationGraphComponent implements OnInit {
   getAttendanceData(): void {
     // 获取考勤记录 id
     const viewStatisticsId = Number(this.route.snapshot.paramMap.get('id'));
+    // 调用考勤信息获取服务加载数据
     this.attendanceService.viewList(viewStatisticsId).subscribe((attendanceDetailDataSet: ViewStatistics[]) => {
       // 获取考勤数据
       this.viewStatistics = attendanceDetailDataSet;
       // 统计图表初始化
-      this.durationHistogramOption = {
+      this.timeHistogramOption = {
         /* 背景颜色设置 */
         backgroundColor: '#fff',
         /* 图标标题设置 */
         title: {
-          text: '课堂考勤 - 观看时间统计',
+          text: '课堂考勤 - 离开次数统计',
           top: '1%',
           left: '2%',
           textStyle: {
@@ -90,7 +91,7 @@ export class DurationGraphComponent implements OnInit {
         },
 
         legend: {
-          data: ['观看时间'],
+          data: ['离开次数'],
           right: '3%',
           top: '1%'
         },
@@ -104,7 +105,7 @@ export class DurationGraphComponent implements OnInit {
 
         /* x 轴属性 */
         xAxis: {
-          name: '分钟',
+          name: '次',
           type: 'value',
           boundaryGap: [0, '1%']
         },
@@ -119,19 +120,19 @@ export class DurationGraphComponent implements OnInit {
 
         /* 柱状图与图例颜色设置 */
         itemStyle: {
-          color: '#3398DB'
+          color: '#4d8cf7'
         },
 
         /* 图表数据 */
         series: [
           {
-            name: '观看时间',
+            name: '离开次数',
             type: 'bar',
-            /* x 轴显示观看时间，以分钟为单位，通过异步加载数据 */
+            /* x 轴显示离开次数，以次为单位，通过异步加载数据 */
             data: this.processTimeData(this.viewStatistics),
             label: {
               normal: {
-                formatter: '{c} 分钟',
+                formatter: '{c} 次',
                 show: true,
                 textBorderColor: '#fff',
                 position: 'inside'
@@ -161,22 +162,6 @@ export class DurationGraphComponent implements OnInit {
   /**
    * @author BillowsTao
    * @param 考勤数据数组
-   * @description 时间获取函数
-   * @returns 时间数组
-   */
-  processTimeData(viewStatistics: ViewStatistics[]): number[] {
-    const timeData = [];  // 时间数据
-    viewStatistics.forEach(element => {
-      // 进行时间处理，将秒转换为分钟
-      timeData.push(Math.round(element.totalTime / (60 * 1000)));
-    });
-    // console.log('时间', timeData);
-    return timeData; // 返回时间数据
-  }
-
-  /**
-   * @author BillowsTao
-   * @param 考勤数据数组
    * @description 用户名获取函数
    * @returns 姓名数组
    */
@@ -190,4 +175,19 @@ export class DurationGraphComponent implements OnInit {
     return nameData; // 返回姓名数据
   }
 
+  /**
+   * @author BillowsTao
+   * @param 考勤数据数组
+   * @description 用户名获取函数
+   * @returns 离开次数数组
+   */
+  processTimeData(viewStatistics: ViewStatistics[]): number[] {
+    const timeData = [];  // 离开次数数据
+    viewStatistics.forEach(element => {
+      // 进行离开次数处理，产生离开次数数组
+      timeData.push(element.exitTimes);
+    });
+    // console.log('离开次数', timeData);
+    return timeData; // 返回离开次数数据
+  }
 }

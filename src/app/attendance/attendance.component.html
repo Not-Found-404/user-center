@@ -18,14 +18,14 @@
   <div class="usercenter-workspace">
     <!-- 考勤界面-工作区-显示区域 -->
     <div class="workspace-display">
-
-      <nz-table #attendanceDataTable [nzData]="attendanceDataSet" [nzShowPagination]="false" nz-row>
+      <!-- 表格显示区域 -->
+      <nz-table class="display-table" nzTitle="课堂考勤信息" #attendanceDataTable [nzData]="attendanceDataSet" [nzShowPagination]="true" nzBordered>
         <thead>
           <tr>
-            <th nzShowSort nzSortKey="id">考勤 ID</th>
-            <th nzShowSort nzSortKey="slideName" nzShowFilter>幻灯片名</th>
-            <th nzShowSort nzSortKey="beginTime">开始时间</th>
-            <th nzShowSort nzSortKey="endTime">结束时间</th>
+            <th>考勤 ID</th>
+            <th>幻灯片名</th>
+            <th>开始时间</th>
+            <th>结束时间</th>
             <th>操作</th>
           </tr>
         </thead>

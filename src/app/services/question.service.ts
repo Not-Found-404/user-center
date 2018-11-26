@@ -4,7 +4,6 @@ import {NzTreeNode} from 'ng-zorro-antd';
 import {Observable} from 'rxjs';
 import {Result} from './result';
 import {Question, QuestionList} from './question';
-import {log} from 'util';
 import {Publish} from './publish';
 
 const httpOptions = {
@@ -29,14 +28,14 @@ export class QuestionService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.questionUrl = 'question/';
+    this.questionUrl = 'api/question/';
   }
   /**
    * 获得当前登录用户的所有试题，与后端路径写法一致
    * @returns {Observable<QuestionList>}
    */
   findAllQuestions(): Observable<Question[]> {
-    log('获取当前登录用户的所有试题');
+    // console.log('获取当前登录用户的所有试题');
     return this.http.get<Question[]>(this.questionUrl + `findAllQuestions`, httpOptions);
   }
   /**
@@ -45,7 +44,7 @@ export class QuestionService {
    * @returns {Observable<Question>}
    */
   getQuestionById(questionId: number): Observable<Question> {
-    log('service:获取数据库中的试题信息' + questionId);
+    // console.log('service:获取数据库中的试题信息' + questionId);
     return this.http.get<Question>(this.questionUrl + `fetchQuestionById?questionId=` + questionId, httpOptions);
   }
   /**
@@ -54,7 +53,7 @@ export class QuestionService {
    * @returns {Observable<Result>}
    */
   deleteQuestion(questionid: number): Observable<Result> {
-    log('service:删除试题');
+    // console.log('service:删除试题');
     return this.http.post<Result>(this.questionUrl + `deleteQuestion`, questionid, httpOptions);
   }
   /**
@@ -63,7 +62,7 @@ export class QuestionService {
      * @returns {Observable<Result>}
      */
   modifyQuestion(question: Question): Observable<Result> {
-    log('service:修改试题');
+    // console.log('service:修改试题');
     return this.http.post<Result>(this.questionUrl + `modifyQeustion`, question, httpOptions);
   }
   /**
@@ -72,7 +71,7 @@ export class QuestionService {
      * @returns {Observable<Result>}
      */
   addNewQuestion(question: Question): Observable<Question> {
-    log('service:添加试题');
+    // console.log('service:添加试题');
     return this.http.get<Question>(this.questionUrl + `addNew`, httpOptions);
   }
   /**

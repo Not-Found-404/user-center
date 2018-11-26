@@ -35,9 +35,9 @@ export class AttendanceService {
    * @returns void
    */
   findAttendanceList(): Observable<AttendanceListResponse[]> {
-    console.log('获取当前登录用户的所有考勤记录');
+    // console.log('获取当前登录用户的所有考勤记录');
     this.attendance = this.http.get<AttendanceListResponse[]>(this.attendanceUrl + `attendance/list`, httpOptions);
-    console.log(this.attendance);
+    // console.log(this.attendance);
     return this.attendance;
   }
 
@@ -47,7 +47,7 @@ export class AttendanceService {
    * @returns {Observable<ViewStatistics>}
    */
   viewList(attendanceId: number): Observable<ViewStatistics[]> {
-    console.log('service:获取数据库中的考勤具体信息');
+    // console.log('service:获取数据库中的考勤具体信息');
     return this.http.get<ViewStatistics[]>(this.attendanceUrl + `view/list?attendanceId=` + attendanceId , httpOptions);
   }
   /**
@@ -56,7 +56,7 @@ export class AttendanceService {
    * @Description: 创建考勤
   */
   createAttendance(slideId: number): Observable<number> {
-    console.log('service:创建考勤');
+    // console.log('service:创建考勤');
     return this.http.get<number>(this.attendanceUrl + `attendance/save?slideId=` + slideId , httpOptions);
   }
 }

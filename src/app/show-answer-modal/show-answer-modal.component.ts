@@ -33,7 +33,7 @@ export class ShowAnswerModalComponent implements OnInit {
    * @param question
    */
   showAnswer(question: Question): void {
-    console.log('显示正确答案的试题ID：' + question.questionId);
+    // console.log('显示正确答案的试题ID：' + question.questionId);
     if (question.originalAnswer === 0) {
       this.originalAnswer = '本题目还未设置正确答案';
       this.isVisible = true;
@@ -42,8 +42,8 @@ export class ShowAnswerModalComponent implements OnInit {
         this.option = option;
         this.content = option.content;
         this.isVisible = true;
-        console.log('option.content:' + option.content);
-        console.log('this.content:' + this.content);
+        // console.log('option.content:' + option.content);
+        // console.log('this.content:' + this.content);
         this.originalAnswer = option.content;
       });
     }

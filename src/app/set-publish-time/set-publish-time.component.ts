@@ -49,7 +49,7 @@ export class SetPublishTimeComponent implements OnInit {
   }
   setPublish(question): void {
     // 设置时间限制
-    console.log('发布试题的ID' + question.questionId.toString());
+    // console.log('发布试题的ID' + question.questionId.toString());
     this.question = question;
     this.isVisible = true;
   }
@@ -89,8 +89,8 @@ export class SetPublishTimeComponent implements OnInit {
          // window.open('toPublishPage?questionId=' + this.question.questionId + '&publishId=' + publish.publishId);
       }
       );
-      console.log( '总时间' + this.totaltime );
-      console.log( '结束时间' + this.endTimes);
+      // console.log( '总时间' + this.totaltime );
+      // console.log( '结束时间' + this.endTimes);
       // 获取Publish
     } else {
         this.showMessage('error', '输入时间不符合，请重新输入');

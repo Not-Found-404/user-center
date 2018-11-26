@@ -1,11 +1,11 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
-import {Nf4AppComponent} from './nf4-app.component';
+import { Nf4AppComponent } from './nf4-app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
-import {NgZorroAntdModule, NZ_I18N, NZ_MESSAGE_CONFIG, zh_CN} from 'ng-zorro-antd';
+import { NgZorroAntdModule, NZ_I18N, NZ_MESSAGE_CONFIG, zh_CN } from 'ng-zorro-antd';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
@@ -14,7 +14,7 @@ import { InputModalComponent } from './input-modal/input-modal.component';
 import { MoveFileModalComponent } from './move-file-modal/move-file-modal.component';
 import { UsercenterComponent } from './usercenter/usercenter.component';
 import { QuestionTestComponent } from './question-test/question-test.component';
-import {QuestionEditModalComponent} from './question-edit-modal/question-edit-modal.component';
+import { QuestionEditModalComponent } from './question-edit-modal/question-edit-modal.component';
 import { SetPublishTimeComponent } from './set-publish-time/set-publish-time.component';
 import { AddOptionModalComponent } from './add-option-modal/add-option-modal.component';
 import { GenerateQRCodeModalComponent } from './generate-qrcode-modal/generate-qrcode-modal.component';
@@ -30,17 +30,19 @@ import { RouterModule, Routes } from '@angular/router';
 import { AttendanceComponent } from './attendance/attendance.component';
 import { DurationGraphComponent } from './duration-graph/duration-graph.component';
 import { AttendanceDetailComponent } from './attendance-detail/attendance-detail.component';
+import { TimeGraphComponent } from './time-graph/time-graph.component';
 
 /*路由跳转到问题检测:question-test*/
 const appRoutes: Routes = [
-  { path: '', redirectTo: '/usercenter', pathMatch: 'full' }, // 添加默认路由
   { path: 'nf4slide/toUserPage', redirectTo: '/usercenter', pathMatch: 'full' },
   { path: 'usercenterA', redirectTo: '/usercenter', pathMatch: 'full' },
   { path: 'usercenter', component: UsercenterComponent },
   { path: 'question-test', component: QuestionTestComponent },
   { path: 'attendance', component: AttendanceComponent },
-  { path: 'duration-graph', component: DurationGraphComponent},
-  { path: 'attendanceDetail/:id', component: AttendanceDetailComponent }
+  { path: 'attendanceDetail/:id', component: AttendanceDetailComponent },
+  { path: 'durationGraph/:id', component: DurationGraphComponent },
+  { path: 'timeGraph/:id', component: TimeGraphComponent },
+  { path: '', redirectTo: '/usercenter', pathMatch: 'full' } // 添加默认路由
 ];
 registerLocaleData(zh);
 
@@ -60,7 +62,8 @@ registerLocaleData(zh);
     QuestionTestComponent,
     AttendanceComponent,
     DurationGraphComponent,
-    AttendanceDetailComponent
+    AttendanceDetailComponent,
+    TimeGraphComponent
   ],
   imports: [
     BrowserModule,
@@ -80,7 +83,7 @@ registerLocaleData(zh);
   providers: [
     /** 配置 ng-zorro-antd 国际化 **/
     { provide: NZ_I18N, useValue: zh_CN },
-    { provide: NZ_MESSAGE_CONFIG, useValue: { nzMaxStack: 2 }}
+    { provide: NZ_MESSAGE_CONFIG, useValue: { nzMaxStack: 2 } }
   ],
   bootstrap: [Nf4AppComponent]
 })

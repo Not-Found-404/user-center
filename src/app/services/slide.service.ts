@@ -3,7 +3,6 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/index';
 import { Slide } from './slide';
 import { Result } from './result';
-import {log} from 'util';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -53,7 +52,7 @@ export class SlideService {
    * @param slide
    */
   findByName(slide: Slide): Observable<Slide[]> {
-    log('通过幻灯片的名字模糊查询' + slide);
+    // console.log('通过幻灯片的名字模糊查询' + slide);
     return this.http.post<Slide[]>(this.folderUrl + `findByNameWithAngular`, slide, httpOptions);
   }
 
@@ -62,6 +61,6 @@ export class SlideService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.folderUrl = 'slide/';
+    this.folderUrl = 'api/slide/';
   }
 }

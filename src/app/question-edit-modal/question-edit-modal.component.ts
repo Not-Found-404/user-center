@@ -41,7 +41,7 @@ export class QuestionEditModalComponent implements OnInit {
     this.userId = this.parentComponent.userId;
   }
   editQuestion(question: Question) {
-    console.log('需编辑试题的ID' + question.questionId.toString());
+    // console.log('需编辑试题的ID' + question.questionId.toString());
     this.question = question;
     this.description = question.description;
     this.optionList = question.optionList;
@@ -54,12 +54,12 @@ export class QuestionEditModalComponent implements OnInit {
    * @param questionId
    */
   addNewOption(questionId: number) {
-    console.log('添加新选项');
+    // console.log('添加新选项');
     this.isVisible = false;
     this.appAddOptionModalModal.addNewOption(questionId);
   }
   deleteOption(optionId: number) {
-    console.log('要删除选项的Id' + optionId);
+    // console.log('要删除选项的Id' + optionId);
     this.showDeleteOptionConfirm(optionId);
   }
   showDeleteOptionConfirm(optionId: number): void {
@@ -71,7 +71,7 @@ export class QuestionEditModalComponent implements OnInit {
       nzOkType    : 'danger',
       nzOnOk      : () => this.showDeleteResult(optionId), // 确认操作，回调删除选项函数
       nzCancelText: '取消',
-      nzOnCancel  : () => console.log('删除对话框_取消')
+      nzOnCancel  : () => {}/* console.log('删除对话框_取消') */
     });
   }
   showMessage(type: string, content: string): void {
@@ -84,7 +84,7 @@ export class QuestionEditModalComponent implements OnInit {
   showDeleteResult(optionId: number): void {
     /*删除试题*/
     /* 提示信息_删除试题id */
-    console.log('删除选项ID:' + optionId.toString());
+    // console.log('删除选项ID:' + optionId.toString());
     /* 删除试题业务逻辑 */
     this.optionService.deleteOption(optionId).subscribe((data: Result) => { // 异步请求
       if (data.code === 200) {
@@ -101,7 +101,9 @@ export class QuestionEditModalComponent implements OnInit {
      * @returns void
      */
   handleOk(): void {
+    // console.log('编辑试题__确定');
     this.originalAnswer = Number(this.originalAnswerString);
+    // console.log('正确选项：' + this.originalAnswer);
     this.questionService.modifyQuestion({
       questionId: this.question.questionId,
       description: this.description,
@@ -114,6 +116,7 @@ export class QuestionEditModalComponent implements OnInit {
   }
   handleCancel(): void {
     /* 点击取消响应函数 */
+    // console.log('编辑试题__取消');
     /*前端测试运行时,注释掉下面这行代码*/
    // this.parentComponent.getAllQuestions(this.parentComponent.user.userId);
     this.isVisible = false;
