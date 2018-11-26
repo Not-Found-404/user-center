@@ -26,7 +26,7 @@ export class OptionService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.optionUrl = 'api/option/';
+    this.optionUrl = 'option/';
   }
   /**
    * 获得所有选项

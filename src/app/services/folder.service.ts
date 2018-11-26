@@ -87,7 +87,7 @@ export class FolderService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.folderUrl = 'api/folder/';
+    this.folderUrl = 'folder/';
     this.activedNode = null;
     this.change = new EventEmitter();
   }

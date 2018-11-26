@@ -28,7 +28,7 @@ export class AnswerService {
    * @param {HttpClient} http
    */
   constructor(private http: HttpClient) {
-    this.answerUrl = 'api/answer/';
+    this.answerUrl = 'answer/';
   }
   findAllAnswers(): Observable<Answer[]> {
     // console.log('获取当前登录用户的所有试题');
