@@ -1,18 +1,21 @@
-import {Component, forwardRef, Host, Inject, OnInit, TemplateRef, ViewChild} from '@angular/core';
-import {NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective, NzMessageService, NzModalService} from 'ng-zorro-antd';
-import {Folder} from '../services/folder';
-import {MoveFileModalComponent} from '../move-file-modal/move-file-modal.component';
-import {InputModalComponent} from '../input-modal/input-modal.component';
-import {SlideService} from '../services/slide.service';
-import {FolderService} from '../services/folder.service';
-import {User} from '../services/user';
-import {DATA} from '../mockData';
-import {Result} from '../services/result';
-import {UserService} from '../services/user.service';
-import {Slide} from '../services/slide';
-import {Nf4AppComponent} from '../nf4-app.component';
-import {AttendanceService} from '../services/attendance.service';
-import {AttendanceListResponse} from '../services/attendance';
+import { Component, forwardRef, Host, Inject, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { NzDropdownContextComponent, NzDropdownService, NzMenuItemDirective, NzMessageService, NzModalService } from 'ng-zorro-antd';
+import { Folder } from '../services/folder';
+import { MoveFileModalComponent } from '../move-file-modal/move-file-modal.component';
+import { InputModalComponent } from '../input-modal/input-modal.component';
+import { SlideService } from '../services/slide.service';
+import { FolderService } from '../services/folder.service';
+import { User } from '../services/user';
+import { Result } from '../services/result';
+import { UserService } from '../services/user.service';
+import { Slide } from '../services/slide';
+import { Nf4AppComponent } from '../nf4-app.component';
+import { AttendanceService } from '../services/attendance.service';
+import { AttendanceListResponse } from '../services/attendance';
+
+/* 模拟数据 -- start -- */
+// import { DATA } from '../mockData';
+/* 模拟数据 -- end -- */
 
 @Component({
   selector: 'app-usercenter',
@@ -46,13 +49,13 @@ export class UsercenterComponent implements OnInit {
   }
 
   constructor(private nzDropdownService: NzDropdownService,
-              private userService: UserService,
-              private slideService: SlideService,
-              private folderService: FolderService,
-              private attendanceService: AttendanceService,
-              private messageService: NzMessageService,   // 全局消息服务-ant
-              private modalService: NzModalService,        // 对话框服务-ant
-              @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent
+    private userService: UserService,
+    private slideService: SlideService,
+    private folderService: FolderService,
+    private attendanceService: AttendanceService,
+    private messageService: NzMessageService,   // 全局消息服务-ant
+    private modalService: NzModalService,        // 对话框服务-ant
+    @Host() @Inject(forwardRef(() => Nf4AppComponent)) nf4AppComponent: Nf4AppComponent
   ) {
     this.parentComponent = nf4AppComponent;
     this.user = {
@@ -69,7 +72,7 @@ export class UsercenterComponent implements OnInit {
       parent: 0,
       child: []
     };
-// 接收发射过来的数据
+    // 接收发射过来的数据
     this.folderService.change.subscribe((value: Slide[]) => {
       // 这里就可以调取接口，刷新用户中心的文件夹中slideVos数据
       this.folder.slideVos = value;
@@ -117,27 +120,8 @@ export class UsercenterComponent implements OnInit {
 
   // 右键菜单_播放幻灯片
   slideMenuPlay(slideId: number): void {
-    /* 播放幻灯片逻辑 */
-    // window.open('toPlayPage?slideId=' + slideId);
-    this.showAttendanceConfirm(slideId);
-  }
-
-  // 显示是否进行考勤的弹出框
-  showAttendanceConfirm(slideId: number): void {
-    this.modalService.confirm({
-      nzTitle: '您是否要在播放幻灯片时进行考勤？',
-      nzContent: '',
-      nzOkText: '确定',
-      nzOkType: 'info',
-      nzOnOk: () => {
-        // this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
-        //   this.attendanceId = attendanceId;
-        //   })
-        window.open('toPlayPage?slideId=' + slideId + '&isAttendance=true&control=true'); // 确认
-      },
-      nzCancelText: '取消',
-      nzOnCancel: () => window.open('toPlayPage?slideId=' + slideId + '&control=true')
-    });
+    /* 播放幻灯片逻辑，直接播放幻灯片，无考勤和远程控制功能 */
+    window.open('toPlayPage?slideId=' + slideId);
   }
 
   // 右键菜单_删除幻灯片
@@ -208,23 +192,22 @@ export class UsercenterComponent implements OnInit {
 
   playWithSync(slideId: number): void {
     // 演讲点击事件
-    this.showAttendancePlay(slideId);
+    this.showAttendanceConfirm(slideId);
   }
 
-  showAttendancePlay(slideId: number): void {
+  // 显示是否进行考勤的弹出框
+  showAttendanceConfirm(slideId: number): void {
     this.modalService.confirm({
       nzTitle: '您是否要在播放幻灯片时进行考勤？',
       nzContent: '',
       nzOkText: '确定',
       nzOkType: 'info',
       nzOnOk: () => {
-        this.attendanceService.createAttendance(slideId).subscribe((attendanceId: number) => {
-          this.attendanceId = attendanceId;
-          console.log('创建考勤记录');
-        });
-        window.open('toPlayPage?slideId=' + slideId + '&attendanceId=' + this.attendanceId + '&control=true'); // 确认
+        /* 确定按钮：打开 考勤 + 远程控制 功能 */
+        window.open('toPlayPage?slideId=' + slideId + '&isAttendance=true&control=true');
       },
       nzCancelText: '取消',
+      /* 取消按钮：打开 远程控制 功能 */
       nzOnCancel: () => window.open('toPlayPage?slideId=' + slideId + '&control=true')
     });
   }
